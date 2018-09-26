@@ -30,12 +30,7 @@ public class ReceiptPageFragment extends Fragment {
             public void onChanged(@Nullable Wing wing) {
                 String flavor = wing.getFlavor();
                 int Quantity = wing.getQuantity();
-                if(flavor!=null){
-                    mBinding.textView.append(flavor);
-                }
-                if(Quantity != 0){
-                    mBinding.textView.append(Integer.toString(Quantity));
-                }
+                mBinding.textView.setText(Quantity+" "+flavor);
 
             }
         });

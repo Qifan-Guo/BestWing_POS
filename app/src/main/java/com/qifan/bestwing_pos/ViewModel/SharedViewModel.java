@@ -14,9 +14,7 @@ public class SharedViewModel extends ViewModel{
  private MutableLiveData<Wing> wing = new MutableLiveData<>();
 
  public void setFlavor(String flavor){
-    LiveData<Wing> wing = getWing();
-    wing.getValue().setFlavor(flavor);
-    setWing(wing.getValue());
+   setFlavorFormat(flavor);
  }
  public void setQuantity(String Quantity){
      LiveData<Wing> wing = getWing();
@@ -36,4 +34,25 @@ public class SharedViewModel extends ViewModel{
      return wing;
  }
 
+
+ public void setFlavorFormat(String flavor){
+     LiveData<Wing> wing = getWing();
+     String oldFlavor= wing.getValue().getFlavor();
+
+     if(oldFlavor == null){
+         wing.getValue().setFlavor(flavor);
+     }else {
+         String endWithNewLine=oldFlavor.substring(oldFlavor.length()-1);
+         if(flavor == "||"){
+             wing.getValue().setFlavor(oldFlavor+flavor+"\n");
+         }else if(endWithNewLine.equals("\n")) {
+             wing.getValue().setFlavor(oldFlavor+"•    "+flavor);
+         }else {
+             wing.getValue().setFlavor(oldFlavor+"+"+flavor);
+         }
+
+     }
+
+     setWing(wing.getValue());
+ }
 }

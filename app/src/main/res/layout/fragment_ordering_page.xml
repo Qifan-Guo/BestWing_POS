@@ -60,6 +60,17 @@
             android:onClick="@{() -> viewModel.setFlavor(`Hot`)}"
 
             />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:text="@string/SplitFlavor"
+            android:textSize="50sp"
+            android:padding="10dp"
+            android:layout_margin="30dp"
+            android:onClick="@{() -> viewModel.setFlavor(`||`)}"
+
+            />
 
 
 
