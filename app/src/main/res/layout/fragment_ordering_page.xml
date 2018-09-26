@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Fragments.OrderingPageFragment"
+    >
+    <data>
+        <variable
+            name="wing"
+            type="com.qifan.bestwing_pos.Model.Wing" />
+        <variable
+            name="viewModel"
+            type="com.qifan.bestwing_pos.ViewModel.SharedViewModel"/>
+    </data>
+    <LinearLayout
+        android:background="@android:color/black"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:text="@string/Quantity12"
+            android:textSize="50sp"
+            android:padding="10dp"
+            android:layout_margin="30dp"
+            android:onClick="@{() -> viewModel.setQuantity(`12`)}"
+
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:text="@string/FlavorHoneyHot"
+            android:textSize="50sp"
+            android:padding="10dp"
+            android:layout_margin="30dp"
+            android:onClick="@{() -> viewModel.setFlavor(`Honey Hot`)}"
+
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:text="@string/Quantity20"
+            android:textSize="50sp"
+            android:padding="10dp"
+            android:layout_margin="30dp"
+            android:onClick="@{() -> viewModel.setQuantity(`20`)}"
+
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:text="@string/FlavorHot"
+            android:textSize="50sp"
+            android:padding="10dp"
+            android:layout_margin="30dp"
+            android:onClick="@{() -> viewModel.setFlavor(`Hot`)}"
+
+            />
+
+
+
+
+
+
+    </LinearLayout>
+
+</layout>
