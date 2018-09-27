@@ -35,7 +35,7 @@
             android:textSize="50sp"
             android:padding="10dp"
             android:layout_margin="30dp"
-            android:onClick="@{() -> viewModel.setFlavor(`Honey Hot`)}"
+            android:onClick="@{() -> viewModel.setFlavor(`HH`)}"
 
             />
         <Button
