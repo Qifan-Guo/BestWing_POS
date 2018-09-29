@@ -2,7 +2,6 @@ package com.qifan.bestwing_pos.Fragments;
 
 
 
-import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
@@ -12,9 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.qifan.bestwing_pos.Model.Wing;
+import com.qifan.bestwing_pos.Model.Order;
 import com.qifan.bestwing_pos.ViewModel.SharedViewModel;
-import com.qifan.bestwing_pos.databinding.FragmentOrderingPageBinding;
+import com.qifan.bestwing_pos.databinding.FragmentWingOrderBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,27 +22,27 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class OrderingPageFragment extends Fragment {
+public class WingOrderFragment extends Fragment {
     private SharedViewModel mSharedViewModel;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mSharedViewModel = ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
-        MutableLiveData<List<Wing>> wingList = new MutableLiveData<>();
+        MutableLiveData<List<Order>> orderList = new MutableLiveData<>();
         //Initialize the list with one item
-        List<Wing> mWing = new ArrayList<>();
-        Wing wing =new Wing(0,"");
-        mWing.add(wing);
-        wingList.setValue(mWing);
+        List<Order> mOrder = new ArrayList<>();
+        Order order =new Order("","","");
+        mOrder.add(order);
+        orderList.setValue(mOrder);
         //need change later
-        mSharedViewModel.setWingList(wingList);
+        mSharedViewModel.setOrderList(orderList);
 
     }
 
 
-    FragmentOrderingPageBinding mBinding;
-    public OrderingPageFragment() {
+    FragmentWingOrderBinding mBinding;
+    public WingOrderFragment() {
         // Required empty public constructor
     }
 
@@ -51,7 +50,7 @@ public class OrderingPageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mBinding = FragmentOrderingPageBinding.inflate(inflater);
+        mBinding = FragmentWingOrderBinding.inflate(inflater);
         mBinding.setViewModel(mSharedViewModel);
         return mBinding.getRoot();
     }

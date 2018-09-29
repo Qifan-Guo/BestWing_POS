@@ -22,4 +22,5 @@
     <string name="Quantity20">20</string>
     <string name="FlavorHot">Hot</string>
     <string name="SplitFlavor">Split</string>
+    <string name="CheeseBurger">CheeseBurger</string>
 </resources>

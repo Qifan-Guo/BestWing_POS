@@ -2,72 +2,63 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Fragments.OrderingPageFragment"
+    tools:context=".Fragments.WingOrderFragment"
     >
     <data>
-        <variable
-            name="wing"
-            type="com.qifan.bestwing_pos.Model.Wing" />
         <variable
             name="viewModel"
             type="com.qifan.bestwing_pos.ViewModel.SharedViewModel"/>
     </data>
     <LinearLayout
-        android:background="@android:color/black"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
             android:text="@string/Quantity12"
             android:textSize="50sp"
-            android:padding="10dp"
-            android:layout_margin="30dp"
-            android:onClick="@{() -> viewModel.setQuantity(`12`)}"
+            android:padding="8dp"
+            android:layout_margin="16dp"
+            android:onClick="@{() -> viewModel.setItemName(`12 wings`)}"
 
             />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
             android:text="@string/FlavorHoneyHot"
             android:textSize="50sp"
-            android:padding="10dp"
-            android:layout_margin="30dp"
+            android:padding="8dp"
+            android:layout_margin="16dp"
             android:onClick="@{() -> viewModel.setFlavor(`HH`)}"
 
             />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
             android:text="@string/Quantity20"
             android:textSize="50sp"
-            android:padding="10dp"
-            android:layout_margin="30dp"
-            android:onClick="@{() -> viewModel.setQuantity(`20`)}"
+            android:padding="8dp"
+            android:layout_margin="16dp"
+            android:onClick="@{() -> viewModel.setItemName(`20 wings`)}"
 
             />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
             android:text="@string/FlavorHot"
             android:textSize="50sp"
-            android:padding="10dp"
-            android:layout_margin="30dp"
+            android:padding="8dp"
+            android:layout_margin="16dp"
             android:onClick="@{() -> viewModel.setFlavor(`Hot`)}"
 
             />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
             android:text="@string/SplitFlavor"
             android:textSize="50sp"
-            android:padding="10dp"
-            android:layout_margin="30dp"
+            android:padding="8dp"
+            android:layout_margin="16dp"
             android:onClick="@{() -> viewModel.setFlavor(`||`)}"
 
             />

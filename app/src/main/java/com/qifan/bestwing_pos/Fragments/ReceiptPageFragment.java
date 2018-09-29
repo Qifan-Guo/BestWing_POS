@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.qifan.bestwing_pos.Model.Wing;
+import com.qifan.bestwing_pos.Model.Order;
 import com.qifan.bestwing_pos.ReceiptListAdapter;
 import com.qifan.bestwing_pos.ViewModel.SharedViewModel;
 import com.qifan.bestwing_pos.databinding.FragmentReceiptPageBinding;
@@ -29,9 +29,9 @@ public class ReceiptPageFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mSharedViewModel = ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
-        mSharedViewModel.getFullListWings().observe(this, new Observer<List<Wing>>() {
+        mSharedViewModel.getOrderList().observe(this, new Observer<List<Order>>() {
             @Override
-            public void onChanged(@Nullable List<Wing> wings) {
+            public void onChanged(@Nullable List<Order> wings) {
                 mBinding.orderList.getAdapter().notifyDataSetChanged();
             }
         });
@@ -43,7 +43,7 @@ public class ReceiptPageFragment extends Fragment {
     private void setUpRecycleView() {
 
         mBinding.orderList.setLayoutManager(new LinearLayoutManager(getContext()));
-        ReceiptListAdapter receiptListAdapter = new ReceiptListAdapter(getContext(), mSharedViewModel.getWingList());
+        ReceiptListAdapter receiptListAdapter = new ReceiptListAdapter(getContext(), mSharedViewModel.getOrderList());
         mBinding.orderList.setAdapter(receiptListAdapter);
 
     }
