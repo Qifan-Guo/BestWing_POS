@@ -15,6 +15,7 @@ import com.qifan.bestwing_pos.Model.Order;
 import com.qifan.bestwing_pos.ReceiptListAdapter;
 import com.qifan.bestwing_pos.ViewModel.SharedViewModel;
 import com.qifan.bestwing_pos.databinding.FragmentReceiptPageBinding;
+import com.qifan.bestwing_pos.iMainActivity;
 
 import java.util.List;
 
@@ -33,6 +34,12 @@ public class ReceiptPageFragment extends Fragment {
             @Override
             public void onChanged(@Nullable List<Order> wings) {
                 mBinding.orderList.getAdapter().notifyDataSetChanged();
+            }
+        });
+        mSharedViewModel.getSubtotal().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable String s) {
+              mBinding.priceBox.setText(s);
             }
         });
 
@@ -58,6 +65,7 @@ public class ReceiptPageFragment extends Fragment {
                              Bundle savedInstanceState) {
         mBinding = FragmentReceiptPageBinding.inflate(inflater);
         mBinding.setViewModel(mSharedViewModel);
+        mBinding.setIMainActivity((iMainActivity)getActivity());
         setUpRecycleView();
         return mBinding.getRoot();
     }

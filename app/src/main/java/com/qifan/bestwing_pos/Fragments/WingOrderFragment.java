@@ -32,7 +32,7 @@ public class WingOrderFragment extends Fragment {
         MutableLiveData<List<Order>> orderList = new MutableLiveData<>();
         //Initialize the list with one item
         List<Order> mOrder = new ArrayList<>();
-        Order order =new Order("","","");
+        Order order =new Order("","",0.0);
         mOrder.add(order);
         orderList.setValue(mOrder);
         //need change later

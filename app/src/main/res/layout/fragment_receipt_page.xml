@@ -1,43 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 <data>
     <variable
         name="viewModel"
         type="com.qifan.bestwing_pos.ViewModel.SharedViewModel" />
+    <variable
+        name="iMainActivity"
+        type="com.qifan.bestwing_pos.iMainActivity"/>
 </data>
-    <LinearLayout
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
+
         <android.support.v7.widget.RecyclerView
-            android:background="@android:color/holo_blue_light"
             android:id="@+id/orderList"
-            android:layout_width="match_parent"
-            android:layout_height="800dp"
-            tools:background="@android:color/holo_blue_light"
-            >
-        </android.support.v7.widget.RecyclerView>
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/holo_blue_light"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@android:color/holo_blue_light"></android.support.v7.widget.RecyclerView>
+
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_margin="8dp"
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             android:orientation="horizontal">
+
             <Button
-                android:background="@android:color/holo_orange_light"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:id="@+id/addItem"
+                android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:textColor="@android:color/white"
-                android:textStyle="bold"
-                android:textSize="30sp"
-                android:text="Add Item"
+                android:background="@android:color/holo_orange_light"
                 android:onClick="@{() -> viewModel.addNewOrder()}"
-                android:id="@+id/addItem"/>
+                android:text="Add Item"
+                android:textColor="@android:color/white"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+               <TextView
+                   android:paddingStart="4dp"
+                   android:paddingEnd="4dp"
+                   android:id="@+id/priceBox"
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent" />
+                <Button
+                    android:id="@+id/payButton"
+                    android:text="@string/pay"
+                    android:onClick="@{() -> iMainActivity.showPaymentFragment()}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
 
         </LinearLayout>
 
 
-    </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
 
 
 

@@ -1,73 +1,396 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Fragments.WingOrderFragment"
-    >
+    tools:context=".Fragments.WingOrderFragment">
+
     <data>
+
         <variable
             name="viewModel"
-            type="com.qifan.bestwing_pos.ViewModel.SharedViewModel"/>
+            type="com.qifan.bestwing_pos.ViewModel.SharedViewModel" />
     </data>
-    <LinearLayout
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <Button
+
+        <RelativeLayout
+            android:id="@+id/QuantityBox"
+            android:layout_width="330dp"
+            android:layout_height="365dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="42dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/WingQuantity"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/wing6"
+                style="@android:style/Widget.DeviceDefault.Light.Button.Toggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="64dp"
+                android:onClick="@{() -> viewModel.setItemName(`6 wings`)}"
+                android:padding="8dp"
+                android:text="@string/Quantity6"
+                android:textSize="50sp"
+                tools:layout_marginTop="64dp" />
+
+            <Button
+                android:id="@+id/wing10"
+                style="@android:style/Widget.DeviceDefault.Light.Button.Toggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="64dp"
+                android:layout_toEndOf="@+id/wing6"
+                android:onClick="@{() -> viewModel.setItemName(`10 wings`)}"
+                android:padding="8dp"
+                android:text="@string/Quantity10"
+                android:textSize="50sp" />
+
+            <Button
+                android:id="@+id/wing15"
+                style="@android:style/Widget.DeviceDefault.Light.Button.Toggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="64dp"
+                android:layout_toEndOf="@+id/wing10"
+                android:onClick="@{() -> viewModel.setItemName(`15 wings`)}"
+                android:padding="8dp"
+                android:text="@string/Quantity15"
+                android:textSize="50sp" />
+
+            <Button
+                android:id="@+id/wing20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/wing6"
+                android:layout_marginTop="8dp"
+                android:layout_toStartOf="@+id/wing10"
+                android:onClick="@{() -> viewModel.setItemName(`20 wings`)}"
+                android:padding="8dp"
+                android:text="@string/Quantity20"
+                android:textSize="50sp" />
+
+            <Button
+                android:id="@+id/wing30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="false"
+                android:layout_alignParentTop="false"
+                android:layout_alignTop="@+id/wing20"
+                android:layout_marginStart="8dp"
+                android:layout_toEndOf="@+id/wing20"
+                android:onClick="@{() -> viewModel.setItemName(`30 wings`)}"
+                android:padding="8dp"
+                android:text="@string/Quantity30"
+                android:textSize="50sp"
+                tools:layout_alignParentStart="false"
+                tools:layout_below="@+id/wing10" />
+
+            <Button
+                android:id="@+id/wing40"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/wing20"
+                android:layout_alignParentBottom="false"
+                android:layout_alignParentEnd="false"
+                android:layout_below="@+id/wing15"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@+id/wing30"
+                android:onClick="@{() -> viewModel.setItemName(`40 wings`)}"
+                android:padding="8dp"
+                android:text="@string/Quantity40"
+                android:textSize="50sp" />
+
+            <Button
+                android:id="@+id/wing50"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_alignParentTop="false"
+                android:layout_below="@+id/wing20"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:onClick="@{() -> viewModel.setItemName(`50 wings`)}"
+                android:padding="8dp"
+                android:text="@string/Quantity50"
+                android:textSize="50sp" />
+
+            <Button
+                android:id="@+id/wing100"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="false"
+                android:layout_alignParentTop="false"
+                android:layout_below="@+id/wing30"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@+id/wing50"
+                android:onClick="@{() -> viewModel.setItemName(`100 wings`)}"
+                android:padding="8dp"
+                android:text="@string/Quantity100"
+                android:textSize="50sp"
+                tools:layout_marginStart="88dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/flavorBox"
+            android:layout_width="658dp"
+            android:layout_height="396dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="425dp"
+            android:layout_marginTop="52dp">
+
+            <Button
+                android:id="@+id/flavorMild"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_margin="8dp"
+                android:onClick="@{() -> viewModel.setFlavor(`Mild`)}"
+                android:padding="8dp"
+                android:text="@string/FlavorMild"
+                android:textSize="50sp" />
+
+            <Button
+                android:id="@+id/flavorMed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_margin="8dp"
+                android:layout_toEndOf="@id/flavorMild"
+                android:onClick="@{() -> viewModel.setFlavor(`Med`)}"
+                android:padding="8dp"
+                android:text="@string/FlavorMed"
+                android:textSize="50sp" />
+
+            <Button
+                android:id="@+id/flavorHot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_margin="8dp"
+                android:layout_toEndOf="@id/flavorMed"
+                android:onClick="@{() -> viewModel.setFlavor(`Hot`)}"
+                android:padding="8dp"
+                android:text="@string/FlavorHot"
+                android:textSize="50sp" />
+
+            <Button
+                android:id="@+id/flavorBBQ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_margin="8dp"
+                android:layout_toEndOf="@id/flavorHot"
+                android:onClick="@{() -> viewModel.setFlavor(`BBQ`)}"
+                android:padding="8dp"
+                android:text="@string/FlavorBBQ"
+                android:textSize="50sp" />
+
+            <Button
+                android:id="@+id/flavorHoneyHot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/flavorMild"
+                android:layout_margin="8dp"
+                android:onClick="@{() -> viewModel.setFlavor(`HH`)}"
+                android:padding="8dp"
+                android:text="@string/FlavorHoneyHot"
+                android:textSize="50sp" />
+
+
+            <Button
+                android:id="@+id/flavorTeriyaki"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/flavorHot"
+                android:layout_margin="8dp"
+                android:layout_toEndOf="@id/flavorHoneyHot"
+                android:onClick="@{() -> viewModel.setFlavor(`TY`)}"
+                android:padding="8dp"
+                android:text="@string/FlavorTY"
+                android:textSize="50sp" />
+
+            <Button
+                android:id="@+id/flavorBraised"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/flavorHoneyHot"
+                android:layout_margin="8dp"
+                android:onClick="@{() -> viewModel.setFlavor(`BR`)}"
+                android:padding="8dp"
+                android:text="@string/FlavorBR"
+                android:textSize="50sp" />
+
+
+            <Button
+                android:id="@+id/flavorLP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/flavorHoneyHot"
+                android:layout_margin="8dp"
+                android:layout_toEndOf="@id/flavorBraised"
+                android:onClick="@{() -> viewModel.setFlavor(`LP`)}"
+                android:padding="8dp"
+                android:text="@string/FlavorLP"
+                android:textSize="50sp" />
+
+            <Button
+                android:id="@+id/flavorSplit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:onClick="@{() -> viewModel.setFlavor(`||=`)}"
+                android:padding="8dp"
+                android:text="@string/SplitFlavor"
+                android:textSize="50sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/SideBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Quantity12"
-            android:textSize="50sp"
-            android:padding="8dp"
-            android:layout_margin="16dp"
-            android:onClick="@{() -> viewModel.setItemName(`12 wings`)}"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="33dp"
+            android:layout_marginStart="42dp">
 
-            />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/FlavorHoneyHot"
-            android:textSize="50sp"
-            android:padding="8dp"
-            android:layout_margin="16dp"
-            android:onClick="@{() -> viewModel.setFlavor(`HH`)}"
+            <Button
+                android:id="@+id/sideFF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_margin="8dp"
+                android:onClick="@{() -> viewModel.setSideItem(`FF`)}"
+                android:padding="8dp"
+                android:text="@string/sideFF"
+                android:textSize="50sp" />
 
-            />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Quantity20"
-            android:textSize="50sp"
-            android:padding="8dp"
-            android:layout_margin="16dp"
-            android:onClick="@{() -> viewModel.setItemName(`20 wings`)}"
+            <Button
+                android:id="@+id/sideFR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/sideFF"
+                android:layout_margin="8dp"
+                android:onClick="@{() -> viewModel.setSideItem(`FR`)}"
+                android:padding="8dp"
+                android:text="@string/sideFR"
+                android:textSize="50sp" />
 
-            />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/FlavorHot"
-            android:textSize="50sp"
-            android:padding="8dp"
-            android:layout_margin="16dp"
-            android:onClick="@{() -> viewModel.setFlavor(`Hot`)}"
+            <Button
+                android:id="@+id/friedRiceAddChicken"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/sideFR"
+                android:layout_margin="8dp"
+                android:onClick="@{() -> viewModel.setSideItem(`+Chicken`)}"
+                android:padding="8dp"
+                android:text="@string/addChicken"
+                android:textSize="50sp" />
 
-            />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/SplitFlavor"
-            android:textSize="50sp"
-            android:padding="8dp"
-            android:layout_margin="16dp"
-            android:onClick="@{() -> viewModel.setFlavor(`||`)}"
+            <Button
+                android:id="@+id/friedRiceAddBeef"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/sideFR"
+                android:layout_margin="8dp"
+                android:layout_toEndOf="@id/friedRiceAddChicken"
+                android:onClick="@{() -> viewModel.setSideItem(`+Beef`)}"
+                android:padding="8dp"
+                android:text="@string/addBeef"
+                android:textSize="50sp" />
 
-            />
+            <Button
+                android:id="@+id/friedRiceAddShrimp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/sideFR"
+                android:layout_margin="8dp"
+                android:layout_toEndOf="@id/friedRiceAddBeef"
+                android:onClick="@{() -> viewModel.setSideItem(`+Shrimp`)}"
+                android:padding="8dp"
+                android:text="@string/addShrimp"
+                android:textSize="50sp" />
+
+            <Button
+                android:id="@+id/friedRiceAddVeg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/friedRiceAddChicken"
+                android:layout_margin="8dp"
+                android:onClick="@{() -> viewModel.setSideItem(`+Veggies`)}"
+                android:padding="8dp"
+                android:text="@string/addVeg"
+                android:textSize="50sp" />
+
+            <Button
+                android:id="@+id/friedRiceAddHouse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/friedRiceAddChicken"
+                android:layout_margin="8dp"
+                android:layout_toEndOf="@id/friedRiceAddVeg"
+                android:onClick="@{() -> viewModel.setSideItem(`+House`)}"
+                android:padding="8dp"
+                android:text="@string/addHouse"
+                android:textSize="50sp" />
+
+            <Button
+                android:id="@+id/addHH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/friedRiceAddVeg"
+                android:layout_margin="8dp"
+                android:onClick="@{() -> viewModel.setSideItem(`+HH`)}"
+                android:padding="8dp"
+                android:text="@string/addHH"
+                android:textSize="50sp" />
+
+            <Button
+                android:id="@+id/addTY"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/friedRiceAddVeg"
+                android:layout_margin="8dp"
+                android:layout_toEndOf="@id/addHH"
+                android:onClick="@{() -> viewModel.setSideItem(`+TY`)}"
+                android:padding="8dp"
+                android:text="@string/addTY"
+                android:textSize="50sp" />
 
 
+        </RelativeLayout>
 
 
-
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </layout>

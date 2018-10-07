@@ -1,103 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="order"
-            type="com.qifan.bestwing_pos.Model.Order"/>
+            type="com.qifan.bestwing_pos.Model.Order" />
+
+        <variable
+            name="viewModel"
+            type="com.qifan.bestwing_pos.ViewModel.SharedViewModel" />
     </data>
+
     <android.support.constraint.ConstraintLayout
         android:id="@+id/itemBox"
-        android:background="@{ safeUnbox(order.Select) ? @android:color/holo_orange_light : @android:color/holo_red_light }"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@{ safeUnbox(order.Select) ? @android:color/holo_orange_light : @android:color/holo_red_light }">
+
+        <RelativeLayout
+            android:id="@+id/controlPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/deleteItem"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/ic_x_black" />
+
+            <Button
+                android:id="@+id/duplicateItem"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_toStartOf="@+id/deleteItem"
+                android:background="@mipmap/ic_duplicate_item" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/itemNameBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/controlPanel">
+
+            <TextView
+                android:id="@+id/itemName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:fontFamily="sans-serif-condensed"
+                android:text="@{order.itemName}"
+
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                tools:text="Item Name" />
+
+        </RelativeLayout>
 
 
-        <Button
-            android:id="@+id/deleteItem"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/ic_x_black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <RelativeLayout
+            android:id="@+id/itemDetailBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/itemNameBox">
 
-        <Button
-            android:id="@+id/duplicateItem"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/ic_content_copy_black_24dp"
-            app:layout_constraintEnd_toStartOf="@+id/deleteItem"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/itemDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="32dp"
+                android:layout_toStartOf="@id/clearDetail"
+                android:hint="@string/itemDetail"
+                android:text="@{order.itemDetail}"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="24sp"
+                android:textStyle="italic"
+                tools:layout_marginTop="4dp"
+                tools:text="Item Detail" />
+
+            <Button
+                android:id="@+id/clearDetail"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:background="@mipmap/ic_delete_arrow"
+                android:onClick="@{() -> viewModel.clearText(`||=`)}" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/sideItemBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/itemDetailBox">
+
+            <TextView
+                android:id="@+id/sideItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="32dp"
+                android:layout_toStartOf="@+id/clearSide"
+                android:hint="@string/sideItem"
+                android:text="@{order.sideItem}"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="24sp"
+                android:textStyle="bold|italic"
+                tools:layout_marginTop="4dp"
+                tools:text="Side Item" />
+
+            <Button
+                android:id="@+id/clearSide"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:background="@mipmap/ic_delete_arrow"
+                android:onClick="@{() -> viewModel.clearText(`side`)}" />
+
+        </RelativeLayout>
 
         <TextView
-            android:id="@+id/itemNameLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:text="Item Name"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/itemName"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:text="@{order.itemName}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/itemNameLabel" />
-        <TextView
-            android:id="@+id/sideItemLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:text="Side Item"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/itemDetail" />
-
-        <TextView
-            android:id="@+id/sideItem"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sideItemLabel" />
-
-
-
-        <TextView
-            android:id="@+id/itemDetail"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:text="@{order.itemDetail}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/itemName" />
-
-        <Button
-            android:id="@+id/ClearDetail"
+            android:id="@+id/specialNote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="112dp"
-            android:text="Clear"
-            app:layout_constraintStart_toEndOf="@+id/itemDetail"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sideItemBox"
+            tools:text="Special Note" />
+
+        <RelativeLayout
+            android:id="@+id/itemSubtotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/totalBeforeTax" />
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="$5.75"
+                    android:text="@{String.valueOf(order.subtotal)}"/>
+            </LinearLayout>
+        </RelativeLayout>
+
 
     </android.support.constraint.ConstraintLayout>
 </layout>
