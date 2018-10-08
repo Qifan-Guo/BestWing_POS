@@ -10,7 +10,9 @@ import com.qifan.bestwing_pos.Model.ItemPrices;
 import com.qifan.bestwing_pos.Model.Order;
 import com.qifan.bestwing_pos.ReceiptListAdapter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -28,6 +30,15 @@ public class SharedViewModel extends ViewModel {
     public void setOrderList(LiveData<List<Order>> list) {
         OrderList.setValue(list.getValue());
 
+
+    }
+    public LiveData<List<Order>> getOrderList() {
+        return OrderList;
+    }
+
+    public void addNewOrder() {
+        OrderList.getValue().add(new Order());
+        setOrderList(OrderList);
     }
 
     //specific method to set flavor for Wing
@@ -38,6 +49,7 @@ public class SharedViewModel extends ViewModel {
     //set name to the order such as "12 wings" or "CheeseBurger"
     public void setItemName(String itemName) {
         mCurrentPosition = ReceiptListAdapter.CurrentPosition;
+        //TODO Index out of bound bug here when delete all the list item then when trying to modify the new item
         mCurrentOrder = OrderList.getValue().get(mCurrentPosition);
         double itemPrice = (mPriceMap.get(itemName) == null) ? 0 : mPriceMap.get(itemName);
         mCurrentOrder.setSubtotal(itemPrice, "mainItem");
@@ -74,14 +86,6 @@ public class SharedViewModel extends ViewModel {
         setOrderList(OrderList);
     }
 
-    public LiveData<List<Order>> getOrderList() {
-        return OrderList;
-    }
-
-    public void addNewOrder() {
-        OrderList.getValue().add(new Order());
-        setOrderList(OrderList);
-    }
 
     //Clear out the ItemDetail and SideItem Text
     public void clearText(String text) {
@@ -170,5 +174,70 @@ public class SharedViewModel extends ViewModel {
             subtotal.setValue("Total Price Before Tax:\n$" + totalPrice + "\n8.9% Tax:\n$" + tax + "\nTotal Price After Tax:\n$" + totalAfterTax);
         }
         return subtotal;
+    }
+
+    public void setPayOrderList(LiveData<List<Order>> payOrderList){
+         mPayOrderList.setValue(payOrderList.getValue());
+
+    }
+
+    public MutableLiveData<List<Order>> getPayOrderList() {
+        return mPayOrderList;
+    }
+
+    // Below are codes for PaymentFragment------------------------------------------
+
+    private int SelectionListPosition;
+    private int PayListPosition;
+    private MutableLiveData<List<Order>> mPayOrderList = new MutableLiveData<>();
+    private Order mCurrentPayOrder;
+    public void addToRightList(){
+        getPosition();
+        OrderList.getValue().remove(mCurrentOrder);
+        if(mCurrentPayOrder.getItemName() == "New Order"){
+            mPayOrderList.getValue().add(mCurrentOrder);
+            mPayOrderList.getValue().remove(mCurrentPayOrder);
+        }else{
+            mPayOrderList.getValue().add(mCurrentOrder);
+        }
+        OrderList.setValue(OrderList.getValue());
+        mPayOrderList.setValue(mPayOrderList.getValue());
+
+    }
+    public void addToLeftList(){
+        PayListPosition = ReceiptListAdapter.PayListCurrentPosition;
+        mCurrentPayOrder = mPayOrderList.getValue().get(PayListPosition);
+        if(mPayOrderList.getValue().size() == 1){
+            mPayOrderList.getValue().add(new Order("New Order",0.0));
+            mPayOrderList.getValue().remove(mCurrentPayOrder);
+        }else {
+            mPayOrderList.getValue().remove(mCurrentPayOrder);
+        }
+
+        OrderList.getValue().add(mCurrentPayOrder);
+        OrderList.setValue(OrderList.getValue());
+        mPayOrderList.setValue(mPayOrderList.getValue());
+
+
+    }
+
+    public void addAll(){
+        List<Order> toRemove = new ArrayList<>();
+        if(mPayOrderList.getValue().get(0).getItemName() == "New Order"){
+            mPayOrderList.getValue().remove(0);
+        }
+        for(Order order : OrderList.getValue()){
+            mPayOrderList.getValue().add(order);
+            toRemove.add(order);
+        }
+        OrderList.getValue().removeAll(toRemove);
+        OrderList.setValue(OrderList.getValue());
+        mPayOrderList.setValue(mPayOrderList.getValue());
+    }
+    public void getPosition(){
+        SelectionListPosition = ReceiptListAdapter.SelectionListCurrentPosition;
+        PayListPosition = ReceiptListAdapter.PayListCurrentPosition;
+        mCurrentOrder = OrderList.getValue().get(SelectionListPosition);
+        mCurrentPayOrder = mPayOrderList.getValue().get(PayListPosition);
     }
 }

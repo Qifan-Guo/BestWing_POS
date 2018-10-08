@@ -1,6 +1,9 @@
 package com.qifan.bestwing_pos.Fragments;
 
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,18 +14,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.qifan.bestwing_pos.Model.Order;
 import com.qifan.bestwing_pos.R;
 import com.qifan.bestwing_pos.ReceiptListAdapter;
 import com.qifan.bestwing_pos.ViewModel.SharedViewModel;
 import com.qifan.bestwing_pos.databinding.FragmentPaymentBinding;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class PaymentFragment extends DialogFragment {
     final int PAYMENT_VIEW_TYPE = 1;
+    final int PAID_VIEW_TYPE = 2;
+    private MutableLiveData<List<Order>> paymentList = new MutableLiveData<>();
 
-private FragmentPaymentBinding mBinding;
+    private FragmentPaymentBinding mBinding;
+
     public PaymentFragment() {
         // Required empty public constructor
     }
@@ -32,23 +42,47 @@ private FragmentPaymentBinding mBinding;
         super.onCreate(savedInstanceState);
 
 
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         SharedViewModel sharedViewModel = ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
-        mBinding =FragmentPaymentBinding.inflate(inflater);
+        mBinding = FragmentPaymentBinding.inflate(inflater);
+
+        mBinding.setViewModel(sharedViewModel);
         mBinding.selectionList.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        mBinding.selectionList.setAdapter(new ReceiptListAdapter(this.getContext(),sharedViewModel.getOrderList(),PAYMENT_VIEW_TYPE));
+        mBinding.selectionList.setAdapter(new ReceiptListAdapter(this.getContext(), sharedViewModel.getOrderList(), PAYMENT_VIEW_TYPE));
+
+
+        List initializeList = new ArrayList();
+        initializeList.add(new Order("New Order", 0.0));
+        paymentList.setValue(initializeList);
+        sharedViewModel.setPayOrderList(paymentList);
+
+        mBinding.paymentList.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        mBinding.paymentList.setAdapter(new ReceiptListAdapter(this.getContext(),sharedViewModel.getPayOrderList(), PAID_VIEW_TYPE));
+
+        mBinding.getViewModel().getOrderList().observe(this, new Observer<List<Order>>() {
+            @Override
+            public void onChanged(@Nullable List<Order> orders) {
+                mBinding.selectionList.getAdapter().notifyDataSetChanged();
+            }
+        });
+
+        mBinding.getViewModel().getPayOrderList().observe(this, new Observer<List<Order>>() {
+            @Override
+            public void onChanged(@Nullable List<Order> orders) {
+                mBinding.paymentList.getAdapter().notifyDataSetChanged();
+            }
+        });
 
         return mBinding.getRoot();
     }
+
     @Override
-    public void onStart()
-    {
+    public void onStart() {
         super.onStart();
 
         // safety check

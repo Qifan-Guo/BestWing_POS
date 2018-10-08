@@ -23,9 +23,12 @@ import java.util.List;
 public class ReceiptListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
+    private LiveData<List<Order>> mPayList;
     private Context mContext;
     private LiveData<List<Order>> mOrderList;
     public static int CurrentPosition = 0;
+    public static int SelectionListCurrentPosition = 0;
+    public static int PayListCurrentPosition = 0;
     int mViewType = 0;
 
     public ReceiptListAdapter(Context context, LiveData<List<Order>> orders) {
@@ -33,9 +36,16 @@ public class ReceiptListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         mOrderList = orders;
     }
     public ReceiptListAdapter(Context context, LiveData<List<Order>> orders, int viewType) {
-        mContext = context;
-        mOrderList = orders;
-        mViewType = viewType;
+        if(viewType == 1){
+            mContext = context;
+            mOrderList = orders;
+            mViewType = viewType;
+        }else if(viewType == 2){
+            mContext = context;
+            mPayList = orders;
+            mViewType = viewType;
+        }
+
     }
 
 
@@ -44,7 +54,8 @@ public class ReceiptListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         switch (mViewType){
 
-            case 1:
+            case 1 :
+            case 2 :
                 PaymentItemBinding paymentItemBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext),
                         R.layout.payment_item,viewGroup,false);
                 return new paymentItemHolder(paymentItemBinding.getRoot());
@@ -58,16 +69,32 @@ public class ReceiptListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+
+
         switch (mViewType){
             case 1:
-                itemHolder itemHolder = (ReceiptListAdapter.itemHolder) viewHolder;
                 Order order = mOrderList.getValue().get(i);
-                itemHolder.mBinding.setOrder(order);
-                itemHolder.mBinding.setViewModel(ViewModelProviders.of((FragmentActivity) mContext).get(SharedViewModel.class));
-                itemHolder.mBinding.executePendingBindings();
-                makeListItemSelectable(itemHolder, i);
-                DeleteItem(itemHolder, i);
-                DuplicateItem(itemHolder, i);
+                paymentItemHolder paymentItemHolder=(paymentItemHolder) viewHolder;
+                paymentItemHolder.mBinding.setOrder(order);
+                paymentItemHolder.mBinding.executePendingBindings();
+                makeListItemSelectable(paymentItemHolder,i,"payment");
+                break;
+            case 2:
+                Order payOrder = mPayList.getValue().get(i);
+                paymentItemHolder paidItemHolder=(paymentItemHolder) viewHolder;
+                paidItemHolder.mBinding.setOrder(payOrder);
+                paidItemHolder.mBinding.executePendingBindings();
+                makeListItemSelectable(paidItemHolder,i,"pay");
+                break;
+                default:
+                    Order mOrder = mOrderList.getValue().get(i);
+                    itemHolder itemHolder = (itemHolder) viewHolder;
+                    itemHolder.mBinding.setOrder(mOrder);
+                    itemHolder.mBinding.setViewModel(ViewModelProviders.of((FragmentActivity) mContext).get(SharedViewModel.class));
+                    itemHolder.mBinding.executePendingBindings();
+                    makeListItemSelectable(itemHolder, i,"default");
+                    DeleteItem(itemHolder, i);
+                    DuplicateItem(itemHolder, i);
 
         }
 
@@ -102,27 +129,17 @@ public class ReceiptListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         });
     }
 
-    private void makeListItemSelectable(@NonNull final itemHolder itemHolder, final int i) {
-        itemHolder.mBinding.itemBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Make Item in RecyclerView Selectable, Single Selection
-                CurrentPosition = i;
-                for (Order order : mOrderList.getValue()) {
-                    order.setSelect(false);
-                }
-                mOrderList.getValue().get(CurrentPosition).setSelect(true);
 
-                Log.d("position", "onClick " + CurrentPosition);
-                notifyDataSetChanged();
-
-            }
-        });
-    }
 
     @Override
     public int getItemCount() {
-        if (mOrderList.getValue() != null) {
+        if(mViewType == 2){
+            if(mPayList != null){
+                return mPayList.getValue().size();
+            }else{
+                return 0;
+            }
+        }else if (mOrderList.getValue() != null) {
             return mOrderList.getValue().size();
         } else {
             return 0;
@@ -146,6 +163,63 @@ public class ReceiptListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             super(itemView);
             mBinding = DataBindingUtil.bind(itemView);
         }
+    }
+    private void makeListItemSelectable(@NonNull final RecyclerView.ViewHolder viewHolder, final int i,String check) {
+        if(check == "default"){
+            itemHolder itemHolder =(itemHolder) viewHolder;
+            itemHolder.mBinding.itemBox.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //Make Item in RecyclerView Selectable, Single Selection
+                    CurrentPosition = i;
+                    for (Order order : mOrderList.getValue()) {
+                        order.setSelect(false);
+                    }
+                    mOrderList.getValue().get(CurrentPosition).setSelect(true);
+
+                    notifyDataSetChanged();
+
+                }
+            });
+        }else if(check =="pay"){
+            paymentItemHolder paymentItemHolder = (paymentItemHolder) viewHolder;
+            paymentItemHolder.mBinding.itemBox.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //Make Item in RecyclerView Selectable, Single Selection
+                    PayListCurrentPosition = i;
+                    for (Order order : mPayList.getValue()) {
+                        order.setSelect(false);
+                    }
+                   mPayList.getValue().get(PayListCurrentPosition).setSelect(true);
+
+                    notifyDataSetChanged();
+
+                }
+            });
+
+
+        } else
+            {
+            paymentItemHolder paymentItemHolder = (paymentItemHolder) viewHolder;
+            paymentItemHolder.mBinding.itemBox.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //Make Item in RecyclerView Selectable, Single Selection
+                    SelectionListCurrentPosition = i;
+                    for (Order order : mOrderList.getValue()) {
+                        order.setSelect(false);
+                    }
+
+
+                    mOrderList.getValue().get(SelectionListCurrentPosition).setSelect(true);
+
+                    notifyDataSetChanged();
+
+                }
+            });
+        }
+
     }
 
 }
