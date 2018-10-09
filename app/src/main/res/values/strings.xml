@@ -53,4 +53,6 @@
     <string name="totalBeforeTax">Total Before Tax: </string>
     <string name="pay">Pay</string>
     <string name="totalPrice">Total Before Tax:\n       \nTotal After Tax:\n    </string>
+    <string name="FlavorHoneyMed">Med</string>
+    <string name="Drink">Drink</string>
 </resources>

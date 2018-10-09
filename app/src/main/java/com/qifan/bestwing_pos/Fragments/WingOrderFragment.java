@@ -51,6 +51,7 @@ public class WingOrderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mBinding = FragmentWingOrderBinding.inflate(inflater);
+
         mBinding.setViewModel(mSharedViewModel);
         return mBinding.getRoot();
     }
