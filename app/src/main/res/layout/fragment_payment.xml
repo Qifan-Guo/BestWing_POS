@@ -1,69 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    android:background="@drawable/dialog_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="viewModel"
-            type="com.qifan.bestwing_pos.ViewModel.SharedViewModel"/>
+            type="com.qifan.bestwing_pos.ViewModel.SharedViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark">
+        >
 
 
         <LinearLayout
-            android:background="@android:color/white"
+            android:orientation="horizontal"
             android:id="@+id/linearLayout2"
             android:layout_width="400dp"
             android:layout_height="600dp"
             android:layout_marginBottom="8dp"
             android:layout_marginStart="268dp"
             android:layout_marginTop="8dp"
+            android:background="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.342">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/selection_list"
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/selection_list"
+            android:background="@drawable/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
         </LinearLayout>
 
-
         <LinearLayout
-            android:background="@android:color/white"
             android:id="@+id/linearLayout3"
             android:layout_width="400dp"
             android:layout_height="600dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="332dp"
             android:layout_marginTop="8dp"
+            android:background="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.342">
 
             <android.support.v7.widget.RecyclerView
+                android:background="@drawable/list_view"
                 android:id="@+id/payment_list"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+                android:layout_height="match_parent" />
         </LinearLayout>
 
         <Button
             android:id="@+id/addAllButton"
-            android:layout_width="100dp"
-            android:layout_height="80dp"
+            android:layout_width="81dp"
+            android:layout_height="49dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="120dp"
+            android:background="@drawable/add_all"
             android:onClick="@{() -> viewModel.addAll()}"
-            android:background="@drawable/add_all_button"
             app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
             app:layout_constraintHorizontal_bias="0.433"
             app:layout_constraintStart_toEndOf="@+id/linearLayout2"
@@ -71,11 +77,11 @@
 
         <Button
             android:id="@+id/addRight"
-            android:background="@drawable/right_arrow"
-            android:layout_width="100dp"
-            android:layout_height="80dp"
+            android:layout_width="81dp"
+            android:layout_height="49dp"
             android:layout_marginEnd="8dp"
             android:layout_marginTop="116dp"
+            android:background="@drawable/add_to_right"
             android:onClick="@{() ->viewModel.addToRightList()}"
             app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
             app:layout_constraintHorizontal_bias="0.459"
@@ -84,13 +90,13 @@
 
         <Button
             android:id="@+id/addLeft"
-            android:background="@drawable/left_arrow"
-            android:layout_width="100dp"
-            android:layout_height="80dp"
+            android:layout_width="81dp"
+            android:layout_height="49dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:onClick="@{() ->viewModel.addToLeftList()}"
             android:layout_marginTop="124dp"
+            android:background="@drawable/add_to_left"
+            android:onClick="@{() ->viewModel.addToLeftList()}"
             app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
             app:layout_constraintHorizontal_bias="0.438"
             app:layout_constraintStart_toEndOf="@+id/linearLayout2"
@@ -99,18 +105,16 @@
         <Button
             android:id="@+id/makePayment"
             android:layout_width="120dp"
-            android:layout_height="66dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="212dp"
-            android:layout_marginTop="52dp"
-            android:background="@android:color/holo_red_light"
-            android:text="Pay"
-            android:textColor="@android:color/white"
-            android:textSize="50sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-            app:layout_constraintVertical_bias="0.0" />
+            android:layout_height="68dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="532dp"
+            android:background="@drawable/pay_button_effect"
+            android:backgroundTint="@color/bootstrap_gray_lighter"
+            android:text="PAY"
+            android:textAllCaps="false"
+            android:textSize="30sp"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout3"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout3" />
 
 
     </android.support.constraint.ConstraintLayout>

@@ -86,6 +86,18 @@ public class SharedViewModel extends ViewModel {
         setOrderList(OrderList);
     }
 
+    public void setDrink(String drink){
+        mCurrentPosition = ReceiptListAdapter.CurrentPosition;
+        mCurrentOrder = OrderList.getValue().get(mCurrentPosition);
+        String previousDrink = mCurrentOrder.getDrink();
+        double drinkPrice = (mPriceMap.get(drink) == null ) ? 0 : mPriceMap.get(drink);
+        mCurrentOrder.setSubtotal(drinkPrice,drink);
+        getSubtotal();
+        String finalOutput = formatOutput(drink,drinkPrice);
+        mCurrentOrder.setDrink(previousDrink+finalOutput);
+        setOrderList(OrderList);
+    }
+
 
     //Clear out the ItemDetail and SideItem Text
     public void clearText(String text) {
@@ -95,12 +107,17 @@ public class SharedViewModel extends ViewModel {
         double subtotal = mCurrentOrder.getSubtotal();
 
         if (text.equals("side")) {
+            //TODO bug here all the "add shrimp beef" not adding to the subtotal
             String item = mCurrentOrder.getSideItem().substring(0,mCurrentOrder.getSideItem().indexOf(" "));
             minusPrice = findPrice(item);
             mCurrentOrder.setSubtotal(subtotal - minusPrice, "clear");
             mCurrentOrder.setSideItem("");
             getSubtotal();
-        } else {
+        } else if(text.equals("drink")){
+            mCurrentOrder.setDrink("");
+
+        }
+        else {
             minusPrice = findPrice("||=");
             mCurrentOrder.setSubtotal(subtotal - minusPrice, "clear");
             mCurrentOrder.setItemDetail("");
@@ -111,40 +128,6 @@ public class SharedViewModel extends ViewModel {
         setOrderList(OrderList);
     }
 
-    public void setFlavorFormat(String flavor) {
-        mCurrentPosition = ReceiptListAdapter.CurrentPosition;
-        mCurrentOrder = OrderList.getValue().get(mCurrentPosition);
-
-        String oldFlavor = mCurrentOrder.getItemDetail();
-
-        if (oldFlavor == null || oldFlavor.equals("")) {
-            mCurrentOrder.setItemDetail("•    " + flavor);
-        } else {
-            String endWithNewLine = oldFlavor.substring(oldFlavor.length() - 1);
-            if (flavor.equals("||=")) {
-                //get the price for Split
-                double splitPrice = findPrice(flavor);
-                String itemFlavor = oldFlavor + flavor;
-                mCurrentOrder.setSubtotal(splitPrice, "other");
-                String finalOutput = formatOutput(itemFlavor, splitPrice);
-                mCurrentOrder.setItemDetail(finalOutput);
-                getSubtotal();
-            } else if (endWithNewLine.equals("\n")) {
-                mCurrentOrder.setItemDetail(oldFlavor + "•    " + flavor);
-            } else {
-                mCurrentOrder.setItemDetail(oldFlavor + "+" + flavor);
-            }
-
-        }
-
-        setOrderList(OrderList);
-    }
-
-    private String formatOutput(String item, double price) {
-        String mprice =item+" ---  $" + price+"\n";
-
-        return mprice;
-    }
 
     private double findPrice(String itemName) {
 
@@ -239,5 +222,43 @@ public class SharedViewModel extends ViewModel {
         PayListPosition = ReceiptListAdapter.PayListCurrentPosition;
         mCurrentOrder = OrderList.getValue().get(SelectionListPosition);
         mCurrentPayOrder = mPayOrderList.getValue().get(PayListPosition);
+    }
+
+
+
+   //Format Section ---------------------------------------------
+    public void setFlavorFormat(String flavor) {
+        mCurrentPosition = ReceiptListAdapter.CurrentPosition;
+        mCurrentOrder = OrderList.getValue().get(mCurrentPosition);
+
+        String oldFlavor = mCurrentOrder.getItemDetail();
+
+        if (oldFlavor == null || oldFlavor.equals("")) {
+            mCurrentOrder.setItemDetail("•    " + flavor);
+        } else {
+            String endWithNewLine = oldFlavor.substring(oldFlavor.length() - 1);
+            if (flavor.equals("||=")) {
+                //get the price for Split
+                double splitPrice = findPrice(flavor);
+                String itemFlavor = oldFlavor + flavor;
+                mCurrentOrder.setSubtotal(splitPrice, "other");
+                String finalOutput = formatOutput(itemFlavor, splitPrice);
+                mCurrentOrder.setItemDetail(finalOutput);
+                getSubtotal();
+            } else if (endWithNewLine.equals("\n")) {
+                mCurrentOrder.setItemDetail(oldFlavor + "•    " + flavor);
+            } else {
+                mCurrentOrder.setItemDetail(oldFlavor + "+" + flavor);
+            }
+
+        }
+
+        setOrderList(OrderList);
+    }
+
+    private String formatOutput(String item, double price) {
+        String mprice =item+" ---  $" + price+"\n";
+
+        return mprice;
     }
 }

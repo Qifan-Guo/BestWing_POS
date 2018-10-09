@@ -111,6 +111,7 @@ public class ReceiptListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 duplicateWing.setItemName(order.getItemName());
                 duplicateWing.setItemDetail(order.getItemDetail());
                 duplicateWing.setSideItem(order.getSideItem());
+                duplicateWing.setDrink(order.getDrink());
                 duplicateWing.setSubtotal(order.getSubtotal(),"other");
                 mOrderList.getValue().add(i,duplicateWing);
                 notifyItemInserted(i);

@@ -55,4 +55,5 @@
     <string name="totalPrice">Total Before Tax:\n       \nTotal After Tax:\n    </string>
     <string name="FlavorHoneyMed">Med</string>
     <string name="Drink">Drink</string>
+    <string name="afterTax">Total After Tax:</string>
 </resources>

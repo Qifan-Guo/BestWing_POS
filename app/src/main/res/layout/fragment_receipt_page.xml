@@ -44,7 +44,7 @@
                 android:id="@+id/addItem"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:background="@android:color/holo_orange_light"
+                android:background="@drawable/add_item_button_effect"
                 android:onClick="@{() -> viewModel.addNewOrder()}"
                 android:text="Add Item"
                 android:textColor="@android:color/white"
@@ -60,12 +60,18 @@
                    android:id="@+id/priceBox"
                    android:layout_width="wrap_content"
                    android:layout_height="match_parent" />
+
                 <Button
+                    android:backgroundTint="@color/bootstrap_gray_lighter"
+
+                    android:textSize="30sp"
+
                     android:id="@+id/payButton"
-                    android:text="@string/pay"
+                    android:background="@drawable/pay_button_effect"
+                    android:layout_width="128dp"
+                    android:layout_height="match_parent"
                     android:onClick="@{() -> iMainActivity.showPaymentFragment()}"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
+                    android:text="@string/pay" />
             </LinearLayout>
 
         </LinearLayout>

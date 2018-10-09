@@ -7,6 +7,9 @@ public class Order {
     private String itemDetail;
     private double itemPrice;
     private String sideItem;
+    private String drink ="";
+
+
     private double subtotal = 0;
     private Boolean isSelect = false;
 
@@ -93,6 +96,14 @@ public class Order {
 
         }
     }
+    public String getDrink() {
+        return drink;
+    }
+
+    public void setDrink(String drink) {
+        this.drink = drink;
+    }
+
 
 
 }

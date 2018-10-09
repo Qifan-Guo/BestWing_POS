@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class ItemPrices {
     public static HashMap<String,Double> itemPriceMap;
-    public Order[] mOrders = new Order[]{SixWing,TenWing,FifteenWing,TwentyWing,ThirtyWing,FortyWing,
+    public Order[] mOrders = new Order[]{canSoda,bottleSoda,medLemonade,largeLemonade,SixWing,TenWing,FifteenWing,TwentyWing,ThirtyWing,FortyWing,
     FiftyWing,HundredWing,sideFriedRice,sideFries,addBeef,addChicken,addShrimp,addHH,addTY,split,addHouse};
 
     public ItemPrices(){
