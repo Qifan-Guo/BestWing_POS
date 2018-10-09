@@ -18,8 +18,8 @@
         android:id="@+id/itemBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:background="@{ safeUnbox(order.Select) ? @android:color/holo_orange_light : @android:color/holo_red_light }">
+        android:layout_margin="4dp"
+        android:background="@{ safeUnbox(order.Select) ? @drawable/card_selected : @drawable/card_default }">
 
         <RelativeLayout
             android:id="@+id/controlPanel"
@@ -27,21 +27,21 @@
             android:layout_height="wrap_content">
 
             <Button
+                android:layout_marginTop="8dp"
                 android:id="@+id/deleteItem"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginEnd="52dp"
                 android:background="@drawable/ic_x_black" />
 
             <Button
+                android:layout_marginTop="8dp"
                 android:id="@+id/duplicateItem"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_toStartOf="@+id/deleteItem"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="94dp"
                 android:background="@mipmap/ic_duplicate_item" />
         </RelativeLayout>
 
@@ -63,6 +63,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat"
                 android:textSize="30sp"
                 android:textStyle="bold"
+                android:typeface="sans"
                 tools:text="Item Name" />
 
         </RelativeLayout>

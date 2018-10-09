@@ -141,9 +141,9 @@ public class SharedViewModel extends ViewModel {
     }
 
     private String formatOutput(String item, double price) {
-        String mprice = "----  $" + price;
-        String finalOutput = String.format(item + "%15s %n", mprice);
-        return finalOutput;
+        String mprice =item+" ---  $" + price+"\n";
+
+        return mprice;
     }
 
     private double findPrice(String itemName) {

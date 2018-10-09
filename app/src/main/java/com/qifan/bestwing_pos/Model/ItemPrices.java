@@ -32,6 +32,11 @@ public class ItemPrices {
     public static final Order addHH= new Order("+HH",0.5);
     public static final Order addTY = new Order("+TY",0.5);
     public static final Order split = new Order("||=",0.5);
+    public static final Order canSoda = new Order("canSoda",1.00);
+    public static final Order bottleSoda = new Order("bottleSoda",1.76);
+    public static final Order medLemonade = new Order("medLemonade",1.00);
+    public static final Order largeLemonade = new Order("largeLemonade",2.00);
+
 
 
 }
