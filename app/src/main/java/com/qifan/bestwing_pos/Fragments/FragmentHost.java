@@ -31,7 +31,7 @@ public class FragmentHost extends Fragment {
                              Bundle savedInstanceState) {
         mBinding = FragmentFragmentHostBinding.inflate(inflater);
         fragmentList.add(new Pair<String, Fragment>("Wing",new WingOrderFragment()));
-        fragmentList.add(new Pair<String, Fragment>("Burger",new BurgerOrderFragment()));
+        fragmentList.add(new Pair<String, Fragment>("Burger",new SandwichFragment()));
         mViewPagerAdapter = new ViewPagerAdapter(this.getFragmentManager(),fragmentList);
         mBinding.viewPager.setAdapter(mViewPagerAdapter);
         mBinding.tabLayout.setupWithViewPager(mBinding.viewPager);

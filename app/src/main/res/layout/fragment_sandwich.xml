@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.SandwichFragment">
+<data>
+    <variable
+        name="viewModel"
+        type="com.qifan.bestwing_pos.ViewModel.SharedViewModel"/>
+</data>
+<android.support.constraint.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/sandwichBox"
+        android:layout_width="1292dp"
+        android:layout_height="634dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/SideItemBox"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/button9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textAlignment="textStart"
+            android:textSize="36sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button2"
+            android:text="@string/cheeseburger" />
+
+        <TextView
+            android:id="@+id/sandwichLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Sandwiches"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_marginBottom="24dp" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="100dp"
+            android:textAlignment="textStart"
+            android:textSize="36sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/phillySteak" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="100dp"
+            android:textAlignment="textStart"
+            android:textSize="36sp"
+            app:layout_constraintStart_toEndOf="@+id/button"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/phillyChicken" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textAlignment="textStart"
+            android:textSize="36sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button9"
+            android:text="@string/hamburger" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textAlignment="textStart"
+            android:textSize="36sp"
+            app:layout_constraintStart_toEndOf="@+id/button3"
+            app:layout_constraintTop_toBottomOf="@+id/button6"
+            android:text="@string/fishSandwich" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textAlignment="textStart"
+            android:textSize="36sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button3"
+            android:text="@string/gyro" />
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textAlignment="textStart"
+            android:textSize="36sp"
+            app:layout_constraintStart_toEndOf="@+id/button9"
+            app:layout_constraintTop_toBottomOf="@+id/button2"
+            android:text="@string/doubleCheeseburger" />
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textAlignment="textStart"
+            android:textSize="36sp"
+            app:layout_constraintStart_toEndOf="@+id/button5"
+            app:layout_constraintTop_toBottomOf="@+id/button4"
+            android:text="@string/turkeyClub" />
+
+        <Button
+            android:id="@+id/button8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textAlignment="textStart"
+            android:textSize="36sp"
+            app:layout_constraintStart_toEndOf="@+id/button7"
+            app:layout_constraintTop_toBottomOf="@+id/button4"
+            android:text="@string/hamClub" />
+    </android.support.constraint.ConstraintLayout>
+
+
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/Drink"
+        android:layout_width="541dp"
+        android:layout_height="335dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/SideItemBox">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/Drink"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/can_soda"
+            android:layout_width="64dp"
+            android:layout_height="120dp"
+            android:layout_marginBottom="64dp"
+            android:layout_marginStart="24dp"
+            android:background="@drawable/on_pressed"
+            android:onClick="@{() -> viewModel.setDrink(`canSoda`)}"
+            android:scaleType="fitCenter"
+            android:src="@drawable/c_soda"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/bottle_soda"
+            android:layout_width="wrap_content"
+            android:layout_height="208dp"
+            android:layout_marginBottom="64dp"
+            android:layout_marginStart="24dp"
+            android:background="@drawable/on_pressed"
+            android:onClick="@{() -> viewModel.setDrink(`bottleSoda`)}"
+            android:scaleType="fitCenter"
+            android:src="@drawable/b_soda"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/can_soda"
+            android:contentDescription="TODO" />
+
+        <ImageButton
+            android:id="@+id/l_lemonade"
+            android:layout_width="111dp"
+            android:layout_height="173dp"
+            android:layout_marginBottom="64dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/on_pressed"
+            android:onClick="@{() -> viewModel.setDrink(`largeLemonade`)}"
+            android:scaleType="fitCenter"
+            android:src="@drawable/l_lemonade"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/m_lemonade" />
+
+        <ImageButton
+            android:id="@+id/m_lemonade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="64dp"
+            android:layout_marginStart="40dp"
+            android:background="@drawable/on_pressed"
+            android:onClick="@{() -> viewModel.setDrink(`medLemonade`)}"
+            android:scaleType="fitCenter"
+            android:src="@drawable/m_lemonade"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/bottle_soda" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/SideItemBox"
+        android:layout_width="746dp"
+        android:layout_height="359dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+
+        <TextView
+            android:id="@+id/SideLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose Your Side"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <Button
+            android:id="@+id/addHH"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="252dp"
+            android:background="@drawable/on_pressed_hh"
+            android:onClick="@{() -> viewModel.setSideItem(`+HH`)}"
+            android:padding="8dp"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/addTY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="24dp"
+            android:background="@drawable/on_pressed_ty"
+            android:onClick="@{() -> viewModel.setSideItem(`+TY`)}"
+            android:padding="8dp"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/addHH" />
+
+        <ImageButton
+            android:id="@+id/sideFF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="76dp"
+            android:background="@drawable/on_pressed"
+            android:onClick="@{() -> viewModel.setSideItem(`FF`)}"
+            android:padding="8dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/french_fries"
+            android:textSize="50sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/friedRiceAddBeef"
+            android:layout_width="76dp"
+            android:layout_height="54dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/on_pressed"
+            android:onClick="@{() -> viewModel.setSideItem(`+Beef`)}"
+            android:padding="8dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/add_beef"
+            android:textSize="50sp"
+            app:layout_constraintEnd_toStartOf="@+id/friedRiceAddVeg"
+            app:layout_constraintTop_toBottomOf="@+id/friedRiceAddShrimp"
+            android:contentDescription="TODO" />
+
+        <ImageButton
+            android:id="@+id/friedRiceAddShrimp"
+            android:layout_width="76dp"
+            android:layout_height="54dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="76dp"
+            android:background="@drawable/on_pressed"
+            android:onClick="@{() -> viewModel.setSideItem(`+Shrimp`)}"
+            android:padding="8dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/add_shrimp"
+            android:textSize="50sp"
+            app:layout_constraintEnd_toStartOf="@+id/friedRiceAddHouse"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/friedRiceAddHouse"
+            android:layout_width="76dp"
+            android:layout_height="54dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="76dp"
+            android:background="@drawable/on_pressed"
+            android:onClick="@{() -> viewModel.setSideItem(`+House`)}"
+            android:padding="8dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/add_house"
+            android:textSize="50sp"
+            app:layout_constraintEnd_toStartOf="@+id/friedRiceAddChicken"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/sideFR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="76dp"
+            android:background="@drawable/on_pressed"
+            android:onClick="@{() -> viewModel.setSideItem(`FR`)}"
+            android:padding="8dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/rice"
+            android:textSize="50sp"
+            app:layout_constraintStart_toEndOf="@+id/sideFF"
+            app:layout_constraintTop_toTopOf="@+id/SideLabel" />
+
+        <ImageButton
+            android:id="@+id/friedRiceAddChicken"
+            android:layout_width="76dp"
+            android:layout_height="54dp"
+            android:layout_marginEnd="92dp"
+            android:layout_marginTop="76dp"
+            android:background="@drawable/on_pressed"
+            android:onClick="@{() -> viewModel.setSideItem(`+Chicken`)}"
+            android:padding="8dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/add_chicken"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/friedRiceAddVeg"
+            android:layout_width="76dp"
+            android:layout_height="54dp"
+            android:layout_marginEnd="124dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/on_pressed"
+            android:onClick="@{() -> viewModel.setSideItem(`+Veggies`)}"
+            android:padding="8dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/add_veggies"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/friedRiceAddChicken" />
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>
+
+</layout>

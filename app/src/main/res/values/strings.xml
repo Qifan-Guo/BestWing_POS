@@ -56,4 +56,13 @@
     <string name="FlavorHoneyMed">Med</string>
     <string name="Drink">Drink</string>
     <string name="afterTax">Total After Tax:</string>
+    <string name="phillySteak">Philly Steak</string>
+    <string name="phillyChicken">Philly Chicken</string>
+    <string name="hamburger">Hamburger</string>
+    <string name="cheeseburger">Cheeseburger</string>
+    <string name="doubleCheeseburger">Double Cheeseburger</string>
+    <string name="fishSandwich">Fish Sandwich</string>
+    <string name="gyro">Gyro</string>
+    <string name="hamClub">Ham Club</string>
+    <string name="turkeyClub">Turkey Club</string>
 </resources>

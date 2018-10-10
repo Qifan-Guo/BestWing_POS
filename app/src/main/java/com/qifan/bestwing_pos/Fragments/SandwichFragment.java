@@ -10,15 +10,15 @@ import android.view.ViewGroup;
 
 import com.qifan.bestwing_pos.R;
 import com.qifan.bestwing_pos.ViewModel.SharedViewModel;
-import com.qifan.bestwing_pos.databinding.FragmentBurgerOrderBinding;
+import com.qifan.bestwing_pos.databinding.FragmentSandwichBinding;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BurgerOrderFragment extends Fragment {
+public class SandwichFragment extends Fragment {
 private SharedViewModel mSharedViewModel;
-    private FragmentBurgerOrderBinding mBinding;
-    public BurgerOrderFragment() {
+    private FragmentSandwichBinding mBinding;
+    public SandwichFragment() {
         // Required empty public constructor
     }
 
@@ -26,7 +26,7 @@ private SharedViewModel mSharedViewModel;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mBinding = FragmentBurgerOrderBinding.inflate(inflater);
+        mBinding = FragmentSandwichBinding.inflate(inflater);
         mSharedViewModel = ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
         mBinding.setViewModel(mSharedViewModel);
         return mBinding.getRoot();
