@@ -8,16 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.qifan.bestwing_pos.R;
-import com.qifan.bestwing_pos.databinding.FragmentSaladRiceBinding;
+import com.qifan.bestwing_pos.databinding.FragmentSideItemsBinding;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Salad_RiceFragment extends Fragment {
-    private FragmentSaladRiceBinding mBinding;
+public class Side_ItemsFragment extends Fragment {
 
-
-    public Salad_RiceFragment() {
+ private FragmentSideItemsBinding mBinding;
+    public Side_ItemsFragment() {
         // Required empty public constructor
     }
 
@@ -25,7 +24,8 @@ public class Salad_RiceFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mBinding = FragmentSaladRiceBinding.inflate(inflater);
+
+        mBinding = FragmentSideItemsBinding.inflate(inflater);
 
         return mBinding.getRoot();
     }
