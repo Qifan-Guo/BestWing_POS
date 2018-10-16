@@ -63,9 +63,7 @@
 
                 <Button
                     android:backgroundTint="@color/bootstrap_gray_lighter"
-
                     android:textSize="30sp"
-
                     android:id="@+id/payButton"
                     android:background="@drawable/pay_button_effect"
                     android:layout_width="128dp"

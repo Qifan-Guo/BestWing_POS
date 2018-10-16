@@ -125,6 +125,7 @@
                 android:text="@string/vegRoll"
                 android:textAlignment="textStart"
                 android:textSize="36sp"
+                android:onClick="@{() -> viewModel.setAdditionalItem(`vegRoll`)}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -137,6 +138,7 @@
                 android:text="@string/shrimpRoll"
                 android:textAlignment="textStart"
                 android:textSize="36sp"
+                android:onClick="@{() -> viewModel.setAdditionalItem(`shrimpRoll`)}"
                 app:layout_constraintStart_toEndOf="@+id/button30"
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -149,6 +151,7 @@
                 android:text="@string/steakRoll"
                 android:textAlignment="textStart"
                 android:textSize="36sp"
+                android:onClick="@{() -> viewModel.setAdditionalItem(`steakRoll`)}"
                 app:layout_constraintStart_toEndOf="@+id/button31"
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -161,6 +164,7 @@
                 android:text="@string/smallFries"
                 android:textAlignment="textStart"
                 android:textSize="36sp"
+                android:onClick="@{() -> viewModel.setAdditionalItem(`smallFries`)}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -173,6 +177,7 @@
                 android:text="@string/largeFries"
                 android:textAlignment="textStart"
                 android:textSize="36sp"
+                android:onClick="@{() -> viewModel.setAdditionalItem(`largeFries`)}"
                 app:layout_constraintStart_toEndOf="@+id/button33"
                 app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -185,6 +190,7 @@
                 android:text="@string/crabRagoon"
                 android:textAlignment="textStart"
                 android:textSize="36sp"
+                android:onClick="@{() -> viewModel.setAdditionalItem(`crabRagoon`)}"
                 app:layout_constraintStart_toEndOf="@+id/button36"
                 app:layout_constraintTop_toBottomOf="@+id/button34" />
 
@@ -197,6 +203,7 @@
                 android:text="@string/cornDog"
                 android:textAlignment="textStart"
                 android:textSize="36sp"
+                android:onClick="@{() -> viewModel.setAdditionalItem(`cornDog`)}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/button33" />
         </android.support.constraint.ConstraintLayout>

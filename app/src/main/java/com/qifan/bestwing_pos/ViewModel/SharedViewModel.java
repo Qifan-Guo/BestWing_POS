@@ -4,163 +4,159 @@ package com.qifan.bestwing_pos.ViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
-import android.support.annotation.NonNull;
 
 import com.qifan.bestwing_pos.Model.ItemPrices;
 import com.qifan.bestwing_pos.Model.Order;
 import com.qifan.bestwing_pos.ReceiptListAdapter;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 
 public class SharedViewModel extends ViewModel {
     private MutableLiveData<List<Order>> OrderList = new MutableLiveData<>();
+
     private int mCurrentPosition = ReceiptListAdapter.CurrentPosition;
     private static Order mCurrentOrder;
 
     //PriceChecker
-    private ItemPrices mItemPrices = new ItemPrices();
-    private HashMap<String, Double> mPriceMap = mItemPrices.itemPriceMap;
-    private MutableLiveData<String> subtotal = new MutableLiveData<>();
+    private MutableLiveData<String> orderFinalPrice = new MutableLiveData<>();
+    private MutableLiveData<String> payListFinalPrice = new MutableLiveData<>();
+
+    ItemPrices mItemPrices = new ItemPrices();
+    private final static double ATLANTA_CITY_TAX = 0.089;
 
 
     public void setOrderList(LiveData<List<Order>> list) {
         OrderList.setValue(list.getValue());
-
-
     }
+
     public LiveData<List<Order>> getOrderList() {
         return OrderList;
     }
 
     public void addNewOrder() {
-        OrderList.getValue().add(new Order());
+        if(OrderList.getValue() == null){
+            List<Order> orders = new ArrayList<>();
+            orders.add(new Order());
+            OrderList.setValue(orders);
+            setOrderList(OrderList);
+        }else {
+            OrderList.getValue().add(new Order());
+            setOrderList(OrderList);
+        }
+
+    }
+    public void initOrderList(){
+        List<Order> orders = new ArrayList<>();
+        orders.add(new Order());
+        OrderList.setValue(orders);
         setOrderList(OrderList);
     }
 
-    //specific method to set flavor for Wing
-    public void setFlavor(String flavor) {
-        setFlavorFormat(flavor);
-    }
 
-    //set name to the order such as "12 wings" or "CheeseBurger"
-    public void setItemName(String itemName) {
+    //Functions ---------------------------------------------------------------------
+    public void getCurrentOrder() {
         mCurrentPosition = ReceiptListAdapter.CurrentPosition;
-        //TODO Index out of bound bug here when delete all the list item then when trying to modify the new item
         mCurrentOrder = OrderList.getValue().get(mCurrentPosition);
-        double itemPrice = (mPriceMap.get(itemName) == null) ? 0 : mPriceMap.get(itemName);
-        mCurrentOrder.setSubtotal(itemPrice, "mainItem");
-        getSubtotal();
-        mCurrentOrder.setItemName(formatOutput(itemName, itemPrice));
+    }
+
+    public void notifyPropertiesChange() {
+        mCurrentOrder.updateSubtotal();
+        getOrderFinalPrice();
         setOrderList(OrderList);
+    }
+
+//Functions ^---------------------------------------------------------------------^
+
+    public void setFlavor(String flavor) {
+        getCurrentOrder();
+        mCurrentOrder.setFlavorToString(flavor);
+
+        notifyPropertiesChange();
+    }
+
+    public void setItemName(String itemName) {
+        getCurrentOrder();
+        mCurrentOrder.setMainItem(itemName);
+        notifyPropertiesChange();
     }
 
 
     public void setItemDetail(String detail) {
-        mCurrentPosition = ReceiptListAdapter.CurrentPosition;
-        mCurrentOrder = OrderList.getValue().get(mCurrentPosition);
+        getCurrentOrder();
         mCurrentOrder.setItemDetail(detail);
-        setOrderList(OrderList);
+        notifyPropertiesChange();
 
     }
 
     public void setSideItem(String side) {
-        mCurrentPosition = ReceiptListAdapter.CurrentPosition;
-        mCurrentOrder = OrderList.getValue().get(mCurrentPosition);
-        String oldSide = mCurrentOrder.getSideItem();
-
-        double sidePrice = (mPriceMap.get(side) == null) ? 0 : mPriceMap.get(side);
-        mCurrentOrder.setSubtotal(sidePrice, side);
-        getSubtotal();
-        String finalOutput = formatOutput(side, sidePrice);
-        if (side.equals("FF")) {
-            mCurrentOrder.setSideItem(finalOutput);
-        } else if (side.equals("FR")) {
-            mCurrentOrder.setSideItem(finalOutput);
-        } else {
-            mCurrentOrder.setSideItem(oldSide + "  " + finalOutput);
-        }
-        setOrderList(OrderList);
+        getCurrentOrder();
+        mCurrentOrder.setSideItems(side);
+        notifyPropertiesChange();
     }
 
-    public void setDrink(String drink){
-        mCurrentPosition = ReceiptListAdapter.CurrentPosition;
-        mCurrentOrder = OrderList.getValue().get(mCurrentPosition);
-        String previousDrink = mCurrentOrder.getDrink();
-        double drinkPrice = (mPriceMap.get(drink) == null ) ? 0 : mPriceMap.get(drink);
-        mCurrentOrder.setSubtotal(drinkPrice,drink);
-        getSubtotal();
-        String finalOutput = formatOutput(drink,drinkPrice);
-        mCurrentOrder.setDrink(previousDrink+finalOutput);
-        setOrderList(OrderList);
+    public void setAdditionalItem(String additionalItem){
+        getCurrentOrder();
+        mCurrentOrder.setAdditionalItems(additionalItem);
+        notifyPropertiesChange();
+    }
+
+    public void setDrink(String drink) {
+        getCurrentOrder();
+        mCurrentOrder.setDrink(drink);
+        notifyPropertiesChange();
     }
 
 
     //Clear out the ItemDetail and SideItem Text
     public void clearText(String text) {
-        mCurrentPosition = ReceiptListAdapter.CurrentPosition;
-        mCurrentOrder = OrderList.getValue().get(mCurrentPosition);
-        double minusPrice; //Price to be deduct from the subtotal;
-        double subtotal = mCurrentOrder.getSubtotal();
+        getCurrentOrder();
 
         if (text.equals("side")) {
-            //TODO bug here all the "add shrimp beef" not adding to the subtotal
-            String item = mCurrentOrder.getSideItem().substring(0,mCurrentOrder.getSideItem().indexOf(" "));
-            minusPrice = findPrice(item);
-            mCurrentOrder.setSubtotal(subtotal - minusPrice, "clear");
-            mCurrentOrder.setSideItem("");
-            getSubtotal();
-        } else if(text.equals("drink")){
-            mCurrentOrder.setDrink("");
-
-        }
-        else {
-            minusPrice = findPrice("||=");
-            mCurrentOrder.setSubtotal(subtotal - minusPrice, "clear");
-            mCurrentOrder.setItemDetail("");
-            getSubtotal();
-        }
-
-
-        setOrderList(OrderList);
-    }
-
-
-    private double findPrice(String itemName) {
-
-        if (mPriceMap.get(itemName) == null) {
-            return 0.0;
+            mCurrentOrder.getSideItems().removeAll(mCurrentOrder.getSideItems());
+            mCurrentOrder.clearText(text);
+            notifyPropertiesChange();
+        } else if (text.equals("drink")) {
+            mCurrentOrder.getDrinks().removeAll(mCurrentOrder.getDrinks());
+            mCurrentOrder.clearText(text);
+            notifyPropertiesChange();
+        }else if(text.equals("additionalItem")){
+            mCurrentOrder.getAdditionalItems().removeAll(mCurrentOrder.getAdditionalItems());
+            mCurrentOrder.clearText(text);
+            notifyPropertiesChange();
         } else {
-            Double price = mPriceMap.get(itemName);
-            return price;
+            mCurrentOrder.clearText(text);
+            notifyPropertiesChange();
         }
 
     }
 
-    public LiveData<String> getSubtotal() {
+
+    public LiveData<String> getOrderFinalPrice() {
         if (OrderList.getValue() == null) {
-            subtotal.setValue("Total Price Before Tax:\n$0.00\nTotal Price After Tax:\n$0.00");
+            orderFinalPrice.setValue("Total Price Before Tax:\n$0.00\nTotal Price After Tax:\n$0.00");
         } else {
             double totalPrice = 0;
+            String totalBeforeTax;
             String totalAfterTax;
             String tax;
             double temp = 0;
             for (Order order : OrderList.getValue()) {
                 totalPrice += order.getSubtotal();
             }
-            temp = totalPrice * 0.089;
+            temp = totalPrice * ATLANTA_CITY_TAX;
+            //TODO Format the price
             tax = String.format("%.2f", temp);//Tax in innerCity atlanta 8.9%
             totalAfterTax = String.format("%.2f", temp + totalPrice);
-            subtotal.setValue("Total Price Before Tax:\n$" + totalPrice + "\n8.9% Tax:\n$" + tax + "\nTotal Price After Tax:\n$" + totalAfterTax);
+            totalBeforeTax = String.format("%.2f",totalPrice);
+            orderFinalPrice.setValue("Total Price Before Tax:\n$" + totalBeforeTax + "\n8.9% Tax:\n$" + tax + "\nTotal Price After Tax:\n$" + totalAfterTax);
         }
-        return subtotal;
+        return orderFinalPrice;
     }
 
-    public void setPayOrderList(LiveData<List<Order>> payOrderList){
-         mPayOrderList.setValue(payOrderList.getValue());
+    public void setPayOrderList(LiveData<List<Order>> payOrderList) {
+        mPayOrderList.setValue(payOrderList.getValue());
 
     }
 
@@ -174,91 +170,81 @@ public class SharedViewModel extends ViewModel {
     private int PayListPosition;
     private MutableLiveData<List<Order>> mPayOrderList = new MutableLiveData<>();
     private Order mCurrentPayOrder;
-    public void addToRightList(){
+
+    public void addToRightList() {
         getPosition();
         OrderList.getValue().remove(mCurrentOrder);
-        if(mCurrentPayOrder.getItemName() == "New Order"){
+        if (mCurrentPayOrder.getMainItem() == "New Order") {
             mPayOrderList.getValue().add(mCurrentOrder);
             mPayOrderList.getValue().remove(mCurrentPayOrder);
-        }else{
+        } else {
             mPayOrderList.getValue().add(mCurrentOrder);
         }
         OrderList.setValue(OrderList.getValue());
         mPayOrderList.setValue(mPayOrderList.getValue());
+        getPayListFinalPrice();
+
 
     }
-    public void addToLeftList(){
+
+    public void addToLeftList() {
         PayListPosition = ReceiptListAdapter.PayListCurrentPosition;
         mCurrentPayOrder = mPayOrderList.getValue().get(PayListPosition);
-        if(mPayOrderList.getValue().size() == 1){
-            mPayOrderList.getValue().add(new Order("New Order",0.0));
+        if (mPayOrderList.getValue().size() == 1) {
+            mPayOrderList.getValue().add(new Order("New Order", 0.0));
             mPayOrderList.getValue().remove(mCurrentPayOrder);
-        }else {
+        } else {
             mPayOrderList.getValue().remove(mCurrentPayOrder);
         }
 
         OrderList.getValue().add(mCurrentPayOrder);
         OrderList.setValue(OrderList.getValue());
         mPayOrderList.setValue(mPayOrderList.getValue());
+        getPayListFinalPrice();
+
 
 
     }
 
-    public void addAll(){
+    public void addAll() {
         List<Order> toRemove = new ArrayList<>();
-        if(mPayOrderList.getValue().get(0).getItemName() == "New Order"){
+        if (mPayOrderList.getValue().get(0).getMainItem() == "New Order") {
             mPayOrderList.getValue().remove(0);
         }
-        for(Order order : OrderList.getValue()){
+        for (Order order : OrderList.getValue()) {
             mPayOrderList.getValue().add(order);
             toRemove.add(order);
         }
         OrderList.getValue().removeAll(toRemove);
         OrderList.setValue(OrderList.getValue());
         mPayOrderList.setValue(mPayOrderList.getValue());
+        getPayListFinalPrice();
     }
-    public void getPosition(){
+
+    public void getPosition() {
         SelectionListPosition = ReceiptListAdapter.SelectionListCurrentPosition;
         PayListPosition = ReceiptListAdapter.PayListCurrentPosition;
         mCurrentOrder = OrderList.getValue().get(SelectionListPosition);
         mCurrentPayOrder = mPayOrderList.getValue().get(PayListPosition);
     }
 
-
-
-   //Format Section ---------------------------------------------
-    public void setFlavorFormat(String flavor) {
-        mCurrentPosition = ReceiptListAdapter.CurrentPosition;
-        mCurrentOrder = OrderList.getValue().get(mCurrentPosition);
-
-        String oldFlavor = mCurrentOrder.getItemDetail();
-
-        if (oldFlavor == null || oldFlavor.equals("")) {
-            mCurrentOrder.setItemDetail("•    " + flavor);
+    public LiveData<String> getPayListFinalPrice() {
+        if (mPayOrderList.getValue() == null) {
+            payListFinalPrice.setValue("Total Price Before Tax:\n$0.00\nTotal Price After Tax:\n$0.00");
         } else {
-            String endWithNewLine = oldFlavor.substring(oldFlavor.length() - 1);
-            if (flavor.equals("||=")) {
-                //get the price for Split
-                double splitPrice = findPrice(flavor);
-                String itemFlavor = oldFlavor + flavor;
-                mCurrentOrder.setSubtotal(splitPrice, "other");
-                String finalOutput = formatOutput(itemFlavor, splitPrice);
-                mCurrentOrder.setItemDetail(finalOutput);
-                getSubtotal();
-            } else if (endWithNewLine.equals("\n")) {
-                mCurrentOrder.setItemDetail(oldFlavor + "•    " + flavor);
-            } else {
-                mCurrentOrder.setItemDetail(oldFlavor + "+" + flavor);
+            double totalPrice = 0;
+            double totalAfterTax;
+            double tax;
+            for (Order order : mPayOrderList.getValue()) {
+                totalPrice += order.getSubtotal();
             }
+            tax = totalPrice * ATLANTA_CITY_TAX;
+            totalAfterTax = totalPrice + tax;
+            String finalOutput = String.format("Total Price Before Tax:\n$ %.2f \n8.9 Tax:\n$ %.2f \nTotal Price After Tax:\n$ %.2f",totalPrice,tax,totalAfterTax);
+            payListFinalPrice.setValue(finalOutput);
 
         }
-
-        setOrderList(OrderList);
+        return payListFinalPrice;
     }
 
-    private String formatOutput(String item, double price) {
-        String mprice =item+" ---  $" + price+"\n";
-
-        return mprice;
-    }
 }

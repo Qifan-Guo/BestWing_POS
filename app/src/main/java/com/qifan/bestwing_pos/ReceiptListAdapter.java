@@ -1,6 +1,5 @@
 package com.qifan.bestwing_pos;
 
-import android.app.Activity;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
@@ -8,11 +7,11 @@ import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.qifan.bestwing_pos.Fragments.ReceiptPageFragment;
 import com.qifan.bestwing_pos.Model.Order;
 import com.qifan.bestwing_pos.ViewModel.SharedViewModel;
 import com.qifan.bestwing_pos.databinding.PaymentItemBinding;
@@ -108,12 +107,14 @@ public class ReceiptListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 //Have to do this otherwise it will reference to the same object when selected
                 Order order = mOrderList.getValue().get(i);
                 Order duplicateWing = new Order();
-                duplicateWing.setItemName(order.getItemName());
-                duplicateWing.setItemDetail(order.getItemDetail());
-                duplicateWing.setSideItem(order.getSideItem());
-                duplicateWing.setDrink(order.getDrink());
-                duplicateWing.setSubtotal(order.getSubtotal(),"other");
+                duplicateWing.setMainItem(order.getMainItem());
+                duplicateWing.setFlavorToString(order.getFlavorToString());
+                duplicateWing.getSideItems().addAll(order.getSideItems());
+                duplicateWing.getDrinks().addAll(order.getDrinks());
+                duplicateWing.setSubtotal(order.getSubtotal());
                 mOrderList.getValue().add(i,duplicateWing);
+                ReceiptPageFragment.mSharedViewModel.getOrderFinalPrice();
+
                 notifyItemInserted(i);
 
             }
@@ -125,6 +126,7 @@ public class ReceiptListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             @Override
             public void onClick(View view) {
                 mOrderList.getValue().remove(i);
+                ReceiptPageFragment.mSharedViewModel.getOrderFinalPrice();
                 notifyDataSetChanged();
             }
         });

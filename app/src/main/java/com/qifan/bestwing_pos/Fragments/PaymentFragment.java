@@ -6,6 +6,7 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -32,6 +33,7 @@ public class PaymentFragment extends DialogFragment {
     final int PAYMENT_VIEW_TYPE = 1;
     final int PAID_VIEW_TYPE = 2;
     private MutableLiveData<List<Order>> paymentList = new MutableLiveData<>();
+    private SharedViewModel sharedViewModel;
 
     private FragmentPaymentBinding mBinding;
 
@@ -49,20 +51,27 @@ public class PaymentFragment extends DialogFragment {
     @Override
     public View onCreateView( @NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mBinding = FragmentPaymentBinding.inflate(inflater);
+
+
         if(getActivity()!= null){
-        SharedViewModel sharedViewModel = ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
+         sharedViewModel = ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
+
+            if(sharedViewModel.getPayOrderList().getValue() == null){
+                ArrayList<Order> initializeList = new ArrayList<>();
+                initializeList.add(new Order("New Order", 0.0));
+                paymentList.setValue(initializeList);
+                sharedViewModel.setPayOrderList(paymentList);
+            }else {
+
+                sharedViewModel.setPayOrderList(sharedViewModel.getPayOrderList());
+            }
 
 
         mBinding.setViewModel(sharedViewModel);
-        mBinding.selectionList.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
+        mBinding.selectionList.setLayoutManager(new LinearLayoutManager(this.getContext()));
         mBinding.selectionList.setAdapter(new ReceiptListAdapter(this.getContext(), sharedViewModel.getOrderList(), PAYMENT_VIEW_TYPE));
 
-
-        ArrayList<Order> initializeList = new ArrayList<>();
-        initializeList.add(new Order("New Order", 0.0));
-        paymentList.setValue(initializeList);
-        sharedViewModel.setPayOrderList(paymentList);
 
         mBinding.paymentList.setLayoutManager(new LinearLayoutManager(this.getContext()));
         mBinding.paymentList.setAdapter(new ReceiptListAdapter(this.getContext(),sharedViewModel.getPayOrderList(), PAID_VIEW_TYPE));
@@ -85,6 +94,12 @@ public class PaymentFragment extends DialogFragment {
             }
         });}
 
+        sharedViewModel.getPayListFinalPrice().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable String s) {
+                mBinding.finalPriceBox.setText(s);
+            }
+        });
         return mBinding.getRoot();
     }
 
@@ -96,8 +111,8 @@ public class PaymentFragment extends DialogFragment {
         if (getDialog().getWindow() == null){
             Log.d("null dialog", "onStart: Dialog is null");
         }else {
-            int dialogWidth = 2400;
-            int dialogHeight = 1200;
+            int dialogWidth = 2500;
+            int dialogHeight = 1400;
 
             getDialog().getWindow().setLayout(dialogWidth, dialogHeight);
 
@@ -107,5 +122,6 @@ public class PaymentFragment extends DialogFragment {
 
         // ... other stuff you want to do in your onStart() method
     }
+
 
 }

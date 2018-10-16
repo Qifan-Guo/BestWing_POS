@@ -4,17 +4,19 @@ import java.util.HashMap;
 
 public class ItemPrices {
     public static HashMap<String,Double> itemPriceMap;
-    public Order[] mOrders = new Order[]{canSoda,bottleSoda,medLemonade,largeLemonade,SixWing,TenWing,FifteenWing,TwentyWing,ThirtyWing,FortyWing,
+    public Order[] mOrders = new Order[]{addVeg,canSoda,bottleSoda,medLemonade,largeLemonade,SixWing,TenWing,FifteenWing,TwentyWing,ThirtyWing,FortyWing,
     FiftyWing,HundredWing,sideFriedRice,sideFries,addBeef,addChicken,addShrimp,addHH,addTY,split,addHouse,gardenSalad,turkeyClub,turkeySalad,hamClub,hamSalad,chefSalad,grilledChickenSalad,
     fishSalad,regularFriedRice,beefFriedRice,shrimpFriedRice,chickenFriedRice,houseFriedRice,vegFriedRice,phillyChicken,phillySteak,hamburger,cheeseburger,doubleCheeseburger,fishSandwich,
     gyro,vegRoll,shrimpRoll,steakRoll,twoFish,threeFish,fourFish,fiveFish,sixShrimp,twelveShrimp,fourTender,addTender,smallFries,largeFries,cornDog,crabRagoon};
 
+
+
+
     public ItemPrices(){
         itemPriceMap = new HashMap<>();
         for(Order order : mOrders){
-            itemPriceMap.put(order.getItemName(),order.getItemPrice());
+            itemPriceMap.put(order.getMainItem(),order.getItemPrice());
         }
-
     }
 
     public static final Order SixWing = new Order("6 wings",4.49);
@@ -31,6 +33,7 @@ public class ItemPrices {
     public static final Order addBeef = new Order("+Beef",2.0);
     public static final Order addShrimp = new Order("+Shrimp",2.0);
     public static final Order addHouse = new Order("+House",3.0);
+    public static final Order addVeg = new Order("+Veggies",1.5);
     public static final Order addHH= new Order("+HH",0.5);
     public static final Order addTY = new Order("+TY",0.5);
     public static final Order split = new Order("||=",0.5);
@@ -63,13 +66,13 @@ public class ItemPrices {
     public static final Order vegRoll = new Order("vegRoll",1.29);
     public static final Order shrimpRoll = new Order("shrimpRoll",1.39);
     public static final Order  steakRoll= new Order("steakRoll",1.99);
-    public static final Order  twoFish= new Order("twoFish",6.49);
-    public static final Order  threeFish= new Order("threeFish",8.49);
-    public static final Order  fourFish= new Order("fourFish",10.49);
-    public static final Order  fiveFish= new Order("fiveFish",12.49);
-    public static final Order sixShrimp = new Order("sixShrimp",7.99);
-    public static final Order  twelveShrimp= new Order("twelveShrimp",11.99);
-    public static final Order  fourTender= new Order("fourTender",5.69);
+    public static final Order  twoFish= new Order("twoFish w/ff/hp",6.49);
+    public static final Order  threeFish= new Order("threeFish w/ff/hp",8.49);
+    public static final Order  fourFish= new Order("fourFish w/ff/hp",10.49);
+    public static final Order  fiveFish= new Order("fiveFish w/ff/hp",12.49);
+    public static final Order sixShrimp = new Order("sixShrimp w/ff",7.99);
+    public static final Order  twelveShrimp= new Order("twelveShrimp w/ff",11.99);
+    public static final Order  fourTender= new Order("fourTender w/ff",5.69);
     public static final Order  addTender= new Order("addTender",1.29);
     public static final Order smallFries = new Order("smallFries",1.59);
     public static final Order  largeFries= new Order("largeFries",2.99);

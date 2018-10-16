@@ -29,14 +29,8 @@ public class WingOrderFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mSharedViewModel = ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
-        MutableLiveData<List<Order>> orderList = new MutableLiveData<>();
-        //Initialize the list with one item
-        List<Order> mOrder = new ArrayList<>();
-        Order order =new Order("","",0.0);
-        mOrder.add(order);
-        orderList.setValue(mOrder);
-        //need change later
-        mSharedViewModel.setOrderList(orderList);
+        mSharedViewModel.initOrderList();
+
 
     }
 

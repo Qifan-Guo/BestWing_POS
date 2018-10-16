@@ -38,6 +38,7 @@ public class FragmentHost extends Fragment {
 
         mViewPagerAdapter = new ViewPagerAdapter(this.getFragmentManager(),fragmentList);
         mBinding.viewPager.setAdapter(mViewPagerAdapter);
+        mBinding.viewPager.setOffscreenPageLimit(5);
         mBinding.tabLayout.setupWithViewPager(mBinding.viewPager);
         return mBinding.getRoot();
     }

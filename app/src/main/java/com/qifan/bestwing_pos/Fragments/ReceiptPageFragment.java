@@ -24,7 +24,7 @@ import java.util.List;
  */
 public class ReceiptPageFragment extends Fragment {
     private FragmentReceiptPageBinding mBinding;
-    private SharedViewModel mSharedViewModel;
+    public static SharedViewModel mSharedViewModel;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class ReceiptPageFragment extends Fragment {
                 mBinding.orderList.getAdapter().notifyDataSetChanged();
             }
         });
-        mSharedViewModel.getSubtotal().observe(this, new Observer<String>() {
+        mSharedViewModel.getOrderFinalPrice().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
               mBinding.priceBox.setText(s);

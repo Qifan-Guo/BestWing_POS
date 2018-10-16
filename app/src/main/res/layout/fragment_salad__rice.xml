@@ -102,6 +102,7 @@
             android:text="@string/gardenSalad"
             android:textAlignment="textStart"
             android:textSize="36sp"
+            android:onClick="@{() -> viewModel.setItemName(`gardenSalad`)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -114,6 +115,7 @@
             android:text="@string/turkeySalad"
             android:textAlignment="textStart"
             android:textSize="36sp"
+            android:onClick="@{() -> viewModel.setItemName(`turkeySalad`)}"
             app:layout_constraintStart_toEndOf="@+id/button15"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -126,6 +128,7 @@
             android:text="@string/hamSalad"
             android:textAlignment="textStart"
             android:textSize="36sp"
+            android:onClick="@{() -> viewModel.setItemName(`hamSalad`)}"
             app:layout_constraintStart_toEndOf="@+id/button14"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -138,6 +141,7 @@
             android:text="@string/chefSalad"
             android:textAlignment="textStart"
             android:textSize="36sp"
+            android:onClick="@{() -> viewModel.setItemName(`chefSalad`)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button15" />
 
@@ -150,6 +154,7 @@
             android:text="@string/grilledChickenSalad"
             android:textAlignment="textStart"
             android:textSize="36sp"
+            android:onClick="@{() -> viewModel.setItemName(`grilledChickenSalad`)}"
             app:layout_constraintStart_toEndOf="@+id/button12"
             app:layout_constraintTop_toBottomOf="@+id/button15" />
 
@@ -162,6 +167,7 @@
             android:text="@string/fishSalad"
             android:textAlignment="textStart"
             android:textSize="36sp"
+            android:onClick="@{() -> viewModel.setItemName(`fishSalad`)}"
             app:layout_constraintStart_toEndOf="@+id/button11"
             app:layout_constraintTop_toBottomOf="@+id/button14" />
 
@@ -209,6 +215,7 @@
             android:text="@string/regularFriedRice"
             android:textAlignment="textStart"
             android:textSize="36sp"
+            android:onClick="@{() -> viewModel.setItemName(`regularFriedRice`)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -221,6 +228,7 @@
             android:text="@string/vegieFriedRice"
             android:textAlignment="textStart"
             android:textSize="36sp"
+            android:onClick="@{() -> viewModel.setItemName(`vegFriedRice`)}"
             app:layout_constraintStart_toEndOf="@+id/button21"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -233,6 +241,7 @@
             android:text="@string/beefFriedRice"
             android:textAlignment="textStart"
             android:textSize="36sp"
+            android:onClick="@{() -> viewModel.setItemName(`beefFriedRice`)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button21" />
 
@@ -245,6 +254,7 @@
             android:text="@string/chickenFriedRice"
             android:textAlignment="textStart"
             android:textSize="36sp"
+            android:onClick="@{() -> viewModel.setItemName(`chickenFriedRice`)}"
             app:layout_constraintStart_toEndOf="@+id/button17"
             app:layout_constraintTop_toBottomOf="@+id/button16" />
 
@@ -257,6 +267,7 @@
             android:text="@string/shrimpFriedRice"
             android:textAlignment="textStart"
             android:textSize="36sp"
+            android:onClick="@{() -> viewModel.setItemName(`shrimpFriedRice`)}"
             app:layout_constraintStart_toEndOf="@+id/button19"
             app:layout_constraintTop_toBottomOf="@+id/button21" />
 
@@ -269,6 +280,7 @@
             android:text="@string/houseFriedRice"
             android:textAlignment="textStart"
             android:textSize="36sp"
+            android:onClick="@{() -> viewModel.setItemName(`houseFriedRice`)}"
             app:layout_constraintStart_toEndOf="@+id/button20"
             app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>

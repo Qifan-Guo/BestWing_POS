@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="android.view.View"/>
         <variable
             name="order"
             type="com.qifan.bestwing_pos.Model.Order" />
@@ -46,6 +46,8 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:layout_margin="0dp"
+            android:padding="0dp"
             android:id="@+id/itemNameBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -58,18 +60,23 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:fontFamily="sans-serif-condensed"
-                android:text="@{order.itemName}"
+                android:text="@{order.mainItemToString}"
 
                 android:textAppearance="@style/TextAppearance.AppCompat"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 android:typeface="sans"
+                tools:layout_marginBottom="0dp"
+
                 tools:text="Item Name" />
 
         </RelativeLayout>
 
 
         <RelativeLayout
+            android:visibility="@{order.flavorToString.equals(``) ? View.GONE : View.VISIBLE}"
+            android:layout_margin="0dp"
+            android:padding="0dp"
             android:id="@+id/itemDetailBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -85,11 +92,11 @@
                 android:layout_marginStart="32dp"
                 android:layout_toStartOf="@id/clearDetail"
                 android:hint="@string/itemDetail"
-                android:text="@{order.itemDetail}"
+                android:text="@{order.flavorToString}"
                 android:textAppearance="@style/TextAppearance.AppCompat"
                 android:textSize="24sp"
                 android:textStyle="italic"
-                tools:layout_marginTop="4dp"
+                tools:layout_marginBottom="0dp"
                 tools:text="Item Detail" />
 
             <Button
@@ -100,12 +107,15 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/delete_option"
-                android:onClick="@{() -> viewModel.clearText(`||=`)}" />
+                android:onClick="@{() -> viewModel.clearText(`flavor`)}" />
         </RelativeLayout>
 
 
         <RelativeLayout
+            android:visibility="@{order.sideItemToString.equals(``) ? View.GONE : View.VISIBLE}"
             android:id="@+id/sideItemBox"
+            android:layout_margin="0dp"
+            android:padding="0dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
@@ -119,7 +129,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_toStartOf="@+id/clearSide"
                 android:hint="@string/sideItem"
-                android:text="@{order.sideItem}"
+                android:text="@{order.sideItemToString}"
                 android:textAppearance="@style/TextAppearance.AppCompat"
                 android:textSize="24sp"
                 android:textStyle="bold|italic"
@@ -139,6 +149,9 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:visibility="@{order.drinkToString.equals(``) ? View.GONE : View.VISIBLE}"
             android:id="@+id/drinkBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -150,7 +163,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="32dp"
-                android:text="@{order.drink}"
+                android:text="@{order.drinkToString}"
                 android:textAppearance="@style/TextAppearance.AppCompat"
                 android:textSize="24sp"
                 android:textStyle="bold|italic"
@@ -168,30 +181,50 @@
                 android:onClick="@{() -> viewModel.clearText(`drink`)}" />
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/specialNote"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/additionalItems"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_margin="0dp"
             android:layout_marginTop="8dp"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            android:textSize="24sp"
-            android:textStyle="bold"
+            android:padding="0dp"
+            android:visibility="@{order.additionalItemToString.equals(``) ? View.GONE : View.VISIBLE}"
+
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/drinkBox"
-            tools:text="Special Note" />
+            app:layout_constraintTop_toBottomOf="@+id/drinkBox">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="32dp"
+                android:text="@{order.additionalItemToString}"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="24sp"
+                android:textStyle="bold|italic"
+                tools:layout_marginTop="4dp"
+                tools:text="Side Item" />
+
+            <Button
+                android:id="@+id/clearAdditionalSide"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="36dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/delete_option"
+                android:onClick="@{() -> viewModel.clearText(`additionalItem`)}" />
+        </RelativeLayout>
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/itemSubtotal"
             android:layout_width="761dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/drinkBox"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintTop_toBottomOf="@+id/additionalItems">
 
 
             <LinearLayout

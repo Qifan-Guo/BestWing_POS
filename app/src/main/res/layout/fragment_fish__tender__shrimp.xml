@@ -137,6 +137,7 @@
                 android:text="@string/fiveFish"
                 android:textAlignment="textStart"
                 android:textSize="36sp"
+                android:onClick="@{() -> viewModel.setItemName(`fiveFish w/ff/hp`)}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/button24" />
 
@@ -147,6 +148,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/fourFish"
+                android:onClick="@{() -> viewModel.setItemName(`fourFish w/ff/hp`)}"
                 android:textAlignment="textStart"
                 android:textSize="36sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -161,6 +163,7 @@
                 android:text="@string/threeFish"
                 android:textAlignment="textStart"
                 android:textSize="36sp"
+                android:onClick="@{() -> viewModel.setItemName(`threeFish w/ff/hp`)}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/button22" />
 
@@ -173,6 +176,7 @@
                 android:text="@string/twoFish"
                 android:textAlignment="textStart"
                 android:textSize="36sp"
+                android:onClick="@{() -> viewModel.setItemName(`twoFish w/ff/hp`)}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -185,6 +189,7 @@
                 android:text="@string/twelveShrimp"
                 android:textAlignment="textStart"
                 android:textSize="36sp"
+                android:onClick="@{() -> viewModel.setItemName(`twelveShrimp w/ff`)}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/button27" />
 
@@ -197,6 +202,7 @@
                 android:text="@string/sixShrimp"
                 android:textAlignment="textStart"
                 android:textSize="36sp"
+                android:onClick="@{() -> viewModel.setItemName(`sixShrimp w/ff`)}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
@@ -209,6 +215,7 @@
                 android:text="@string/fourTender"
                 android:textAlignment="textStart"
                 android:textSize="36sp"
+                android:onClick="@{() -> viewModel.setItemName(`fourTender w/ff`)}"
                 app:layout_constraintStart_toEndOf="@+id/button22"
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
@@ -221,6 +228,7 @@
                 android:text="@string/addTender"
                 android:textAlignment="textStart"
                 android:textSize="36sp"
+                android:onClick="@{() -> viewModel.setAdditionalItem(`addTender`)}"
                 app:layout_constraintStart_toEndOf="@+id/button24"
                 app:layout_constraintTop_toBottomOf="@+id/button28" />
         </android.support.constraint.ConstraintLayout>

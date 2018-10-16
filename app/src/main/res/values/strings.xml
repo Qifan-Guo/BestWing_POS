@@ -98,4 +98,5 @@
     <string name="vegRoll">Veg Roll</string>
     <string name="steakRoll">Steak and Cheese Roll</string>
     <string name="eggRoll">Egg Rolls</string>
+    <string name="additionalSide">Additional Side</string>
 </resources>
