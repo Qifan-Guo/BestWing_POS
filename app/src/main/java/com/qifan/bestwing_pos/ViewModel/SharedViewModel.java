@@ -83,13 +83,6 @@ public class SharedViewModel extends ViewModel {
     }
 
 
-    public void setItemDetail(String detail) {
-        getCurrentOrder();
-        mCurrentOrder.setItemDetail(detail);
-        notifyPropertiesChange();
-
-    }
-
     public void setSideItem(String side) {
         getCurrentOrder();
         mCurrentOrder.setSideItems(side);
@@ -105,6 +98,12 @@ public class SharedViewModel extends ViewModel {
     public void setDrink(String drink) {
         getCurrentOrder();
         mCurrentOrder.setDrink(drink);
+        notifyPropertiesChange();
+    }
+
+    public void setSpecialOption(String specialOption){
+        getCurrentOrder();
+        mCurrentOrder.setSpecialOption(specialOption);
         notifyPropertiesChange();
     }
 
@@ -125,7 +124,11 @@ public class SharedViewModel extends ViewModel {
             mCurrentOrder.getAdditionalItems().removeAll(mCurrentOrder.getAdditionalItems());
             mCurrentOrder.clearText(text);
             notifyPropertiesChange();
-        } else {
+        } else if(text.equals("specialOptions")){
+            mCurrentOrder.getSpecialOption().removeAll(mCurrentOrder.getSpecialOption());
+            mCurrentOrder.clearText(text);
+            notifyPropertiesChange();
+        }else {
             mCurrentOrder.clearText(text);
             notifyPropertiesChange();
         }

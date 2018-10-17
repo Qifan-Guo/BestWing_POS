@@ -1,92 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="viewModel"
-            type="com.qifan.bestwing_pos.ViewModel.SharedViewModel"/>
+            type="com.qifan.bestwing_pos.ViewModel.SharedViewModel" />
     </data>
+
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/drinkBox"
-        android:layout_width="541dp"
-        android:layout_height="335dp"
-        android:layout_marginBottom="32dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/Drink"
-            android:textSize="36sp"
-            android:textStyle="bold"
+        <include
+            android:id="@+id/drinkSection"
+            layout="@layout/drink_section"
+            android:layout_width="541dp"
+            android:layout_height="335dp"
+            android:layout_marginBottom="188dp"
+            android:layout_marginEnd="88dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageButton
-            android:id="@+id/can_soda"
-            android:layout_width="64dp"
-            android:layout_height="120dp"
-            android:layout_marginBottom="64dp"
-            android:layout_marginStart="24dp"
-            android:background="@drawable/on_pressed"
-            android:onClick="@{() -> viewModel.setDrink(`canSoda`)}"
-            android:scaleType="fitCenter"
-            android:src="@drawable/c_soda"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <ImageButton
-            android:id="@+id/bottle_soda"
-            android:layout_width="wrap_content"
-            android:layout_height="208dp"
-            android:layout_marginBottom="64dp"
-            android:layout_marginStart="24dp"
-            android:background="@drawable/on_pressed"
-            android:onClick="@{() -> viewModel.setDrink(`bottleSoda`)}"
-            android:scaleType="fitCenter"
-            android:src="@drawable/b_soda"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/can_soda" />
-
-        <ImageButton
-            android:id="@+id/l_lemonade"
-            android:layout_width="111dp"
-            android:layout_height="173dp"
-            android:layout_marginBottom="64dp"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/on_pressed"
-            android:onClick="@{() -> viewModel.setDrink(`largeLemonade`)}"
-            android:scaleType="fitCenter"
-            android:src="@drawable/l_lemonade"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/m_lemonade" />
-
-        <ImageButton
-            android:id="@+id/m_lemonade"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="64dp"
-            android:layout_marginStart="40dp"
-            android:background="@drawable/on_pressed"
-            android:onClick="@{() -> viewModel.setDrink(`medLemonade`)}"
-            android:scaleType="fitCenter"
-            android:src="@drawable/m_lemonade"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/bottle_soda" />
-
-    </android.support.constraint.ConstraintLayout>
+            app:viewModel="@{viewModel}" />
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="1691dp"
-            android:layout_height="658dp"
+            android:layout_height="457dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -122,10 +63,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:onClick="@{() -> viewModel.setAdditionalItem(`vegRoll`)}"
                 android:text="@string/vegRoll"
                 android:textAlignment="textStart"
                 android:textSize="36sp"
-                android:onClick="@{() -> viewModel.setAdditionalItem(`vegRoll`)}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -135,10 +76,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:onClick="@{() -> viewModel.setAdditionalItem(`shrimpRoll`)}"
                 android:text="@string/shrimpRoll"
                 android:textAlignment="textStart"
                 android:textSize="36sp"
-                android:onClick="@{() -> viewModel.setAdditionalItem(`shrimpRoll`)}"
                 app:layout_constraintStart_toEndOf="@+id/button30"
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -148,10 +89,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:onClick="@{() -> viewModel.setAdditionalItem(`steakRoll`)}"
                 android:text="@string/steakRoll"
                 android:textAlignment="textStart"
                 android:textSize="36sp"
-                android:onClick="@{() -> viewModel.setAdditionalItem(`steakRoll`)}"
                 app:layout_constraintStart_toEndOf="@+id/button31"
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -161,10 +102,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:onClick="@{() -> viewModel.setAdditionalItem(`smallFries`)}"
                 android:text="@string/smallFries"
                 android:textAlignment="textStart"
                 android:textSize="36sp"
-                android:onClick="@{() -> viewModel.setAdditionalItem(`smallFries`)}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -174,10 +115,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:onClick="@{() -> viewModel.setAdditionalItem(`largeFries`)}"
                 android:text="@string/largeFries"
                 android:textAlignment="textStart"
                 android:textSize="36sp"
-                android:onClick="@{() -> viewModel.setAdditionalItem(`largeFries`)}"
                 app:layout_constraintStart_toEndOf="@+id/button33"
                 app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -187,10 +128,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:onClick="@{() -> viewModel.setAdditionalItem(`crabRagoon`)}"
                 android:text="@string/crabRagoon"
                 android:textAlignment="textStart"
                 android:textSize="36sp"
-                android:onClick="@{() -> viewModel.setAdditionalItem(`crabRagoon`)}"
                 app:layout_constraintStart_toEndOf="@+id/button36"
                 app:layout_constraintTop_toBottomOf="@+id/button34" />
 
@@ -200,10 +141,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:onClick="@{() -> viewModel.setAdditionalItem(`cornDog`)}"
                 android:text="@string/cornDog"
                 android:textAlignment="textStart"
                 android:textSize="36sp"
-                android:onClick="@{() -> viewModel.setAdditionalItem(`cornDog`)}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/button33" />
         </android.support.constraint.ConstraintLayout>

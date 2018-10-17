@@ -7,7 +7,7 @@ public class ItemPrices {
     public Order[] mOrders = new Order[]{addVeg,canSoda,bottleSoda,medLemonade,largeLemonade,SixWing,TenWing,FifteenWing,TwentyWing,ThirtyWing,FortyWing,
     FiftyWing,HundredWing,sideFriedRice,sideFries,addBeef,addChicken,addShrimp,addHH,addTY,split,addHouse,gardenSalad,turkeyClub,turkeySalad,hamClub,hamSalad,chefSalad,grilledChickenSalad,
     fishSalad,regularFriedRice,beefFriedRice,shrimpFriedRice,chickenFriedRice,houseFriedRice,vegFriedRice,phillyChicken,phillySteak,hamburger,cheeseburger,doubleCheeseburger,fishSandwich,
-    gyro,vegRoll,shrimpRoll,steakRoll,twoFish,threeFish,fourFish,fiveFish,sixShrimp,twelveShrimp,fourTender,addTender,smallFries,largeFries,cornDog,crabRagoon};
+    gyro,vegRoll,shrimpRoll,steakRoll,twoFish,threeFish,fourFish,fiveFish,sixShrimp,twelveShrimp,fourTender,addTender,smallFries,largeFries,cornDog,crabRagoon,extraEgg,extraMeat};
 
 
 
@@ -78,6 +78,8 @@ public class ItemPrices {
     public static final Order  largeFries= new Order("largeFries",2.99);
     public static final Order  cornDog = new Order("cornDog",1.00);
     public static final Order  crabRagoon = new Order("crabRagoon",1.39);
+    public static final Order  extraEgg = new Order("extraEgg",0.5);
+    public static final Order  extraMeat = new Order("extraMeat",2.00);
 
 
 

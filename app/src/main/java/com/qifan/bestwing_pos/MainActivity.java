@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.qifan.bestwing_pos.Fragments.FragmentHost;
 import com.qifan.bestwing_pos.Fragments.PaymentFragment;
+import com.qifan.bestwing_pos.Fragments.SpecialOptionFragment;
 import com.qifan.bestwing_pos.Fragments.WingOrderFragment;
 import com.qifan.bestwing_pos.Fragments.ReceiptPageFragment;
 import com.qifan.bestwing_pos.databinding.ActivityMainBinding;
@@ -37,9 +38,14 @@ public class MainActivity extends AppCompatActivity implements iMainActivity {
 
     @Override
     public void showPaymentFragment() {
-        Toast.makeText(this,"Click",Toast.LENGTH_SHORT).show();
         PaymentFragment paymentFragment = new PaymentFragment();
         paymentFragment.show(getSupportFragmentManager(),"paymentFragment");
 
+    }
+
+    @Override
+    public void showSpecialOptionFragment() {
+        SpecialOptionFragment specialOptionFragment = new SpecialOptionFragment();
+        specialOptionFragment.show(getSupportFragmentManager(),"specialOptionFragment");
     }
 }

@@ -13,7 +13,9 @@ import android.view.ViewGroup;
 
 import com.qifan.bestwing_pos.Model.Order;
 import com.qifan.bestwing_pos.ViewModel.SharedViewModel;
+import com.qifan.bestwing_pos.databinding.DrinkSectionBinding;
 import com.qifan.bestwing_pos.databinding.FragmentWingOrderBinding;
+import com.qifan.bestwing_pos.iMainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +26,7 @@ import java.util.List;
  */
 public class WingOrderFragment extends Fragment {
     private SharedViewModel mSharedViewModel;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class WingOrderFragment extends Fragment {
 
 
     FragmentWingOrderBinding mBinding;
+
     public WingOrderFragment() {
         // Required empty public constructor
     }
@@ -45,8 +49,8 @@ public class WingOrderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mBinding = FragmentWingOrderBinding.inflate(inflater);
-
         mBinding.setViewModel(mSharedViewModel);
+        mBinding.setIMainActivity((iMainActivity)getActivity());
         return mBinding.getRoot();
     }
 

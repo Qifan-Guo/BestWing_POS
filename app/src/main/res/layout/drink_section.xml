@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.qifan.bestwing_pos.ViewModel.SharedViewModel" />
+    </data>
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="541dp"
+        android:layout_height="420dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/Drink"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/can_soda"
+            android:layout_width="64dp"
+            android:layout_height="120dp"
+            android:layout_marginBottom="56dp"
+            android:layout_marginStart="32dp"
+            android:background="@drawable/on_pressed"
+            android:contentDescription="@string/canSoda"
+            android:onClick="@{() -> viewModel.setDrink(`canSoda`)}"
+            android:scaleType="fitCenter"
+            android:src="@drawable/c_soda"
+            app:layout_constraintBottom_toTopOf="@+id/noIce"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/bottle_soda"
+            android:layout_width="wrap_content"
+            android:layout_height="208dp"
+            android:layout_marginBottom="56dp"
+            android:layout_marginStart="24dp"
+            android:background="@drawable/on_pressed"
+            android:contentDescription="@string/bottleSoda"
+            android:onClick="@{() -> viewModel.setDrink(`bottleSoda`)}"
+            android:scaleType="fitCenter"
+            android:src="@drawable/b_soda"
+            app:layout_constraintBottom_toTopOf="@+id/noIce"
+            app:layout_constraintStart_toEndOf="@+id/can_soda" />
+
+        <ImageButton
+            android:id="@+id/l_lemonade"
+            android:layout_width="111dp"
+            android:layout_height="173dp"
+            android:layout_marginBottom="48dp"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/on_pressed"
+            android:contentDescription="@string/largeLemonade"
+            android:onClick="@{() -> viewModel.setDrink(`largeLemonade`)}"
+            android:scaleType="fitCenter"
+            android:src="@drawable/l_lemonade"
+            app:layout_constraintBottom_toTopOf="@+id/HeavyIce"
+            app:layout_constraintStart_toEndOf="@+id/m_lemonade" />
+
+        <ImageButton
+            android:id="@+id/m_lemonade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="48dp"
+            android:layout_marginStart="32dp"
+            android:background="@drawable/on_pressed"
+            android:contentDescription="@string/medLemonade"
+            android:onClick="@{() -> viewModel.setDrink(`medLemonade`)}"
+            android:scaleType="fitCenter"
+            android:src="@drawable/m_lemonade"
+            app:layout_constraintBottom_toTopOf="@+id/lightIce"
+            app:layout_constraintStart_toEndOf="@+id/bottle_soda" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ice_cube"
+            android:contentDescription="@string/ice_cube_img" />
+
+        <Button
+            android:id="@+id/noIce"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginBottom="24dp"
+            android:layout_marginStart="24dp"
+            android:background="@drawable/quantity_button_effect"
+            android:text="@string/noIce"
+            android:onClick="@{() -> viewModel.setDrink(`No Ice`)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView2" />
+
+        <Button
+            android:id="@+id/lightIce"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginBottom="24dp"
+            android:layout_marginStart="24dp"
+            android:background="@drawable/quantity_button_effect"
+            android:text="@string/lightIce"
+            android:onClick="@{() -> viewModel.setDrink(`Light Ice`)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/noIce" />
+
+        <Button
+            android:id="@+id/HeavyIce"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginBottom="24dp"
+            android:layout_marginStart="24dp"
+            android:background="@drawable/quantity_button_effect"
+            android:text="@string/heavyIce"
+            android:onClick="@{() -> viewModel.setDrink(`Heavy Ice`)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/lightIce" />
+
+    </android.support.constraint.ConstraintLayout>
+
+
+
+
+
+
+</layout>
+

@@ -99,4 +99,34 @@
     <string name="steakRoll">Steak and Cheese Roll</string>
     <string name="eggRoll">Egg Rolls</string>
     <string name="additionalSide">Additional Side</string>
+    <string name="canSoda">canSoda</string>
+    <string name="bottleSoda">bottleSoda</string>
+    <string name="largeLemonade">largeLemonade</string>
+    <string name="medLemonade">medLemonade</string>
+    <string name="noIce">No Ice</string>
+    <string name="lightIce">Light Ice</string>
+    <string name="heavyIce">Heavy Ice</string>
+    <string name="ice_cube_img">ice cube img</string>
+    <string name="lettuce">lettuce</string>
+    <string name="tomato">tomato</string>
+    <string name="jelopeno">jelopeno</string>
+    <string name="bananaPepper">bananaPepper</string>
+    <string name="pickles">pickles</string>
+    <string name="blackOlive">Black Olive</string>
+    <string name="onion">onion</string>
+    <string name="peas">peas</string>
+    <string name="carrots">carrots</string>
+    <string name="mayo">mayo</string>
+    <string name="ketchup">ketchup</string>
+    <string name="mustard">mustard</string>
+    <string name="noBroccoli">No Broccoli</string>
+    <string name="noEgg">No Egg</string>
+    <string name="no">No</string>
+    <string name="extra">Extra</string>
+    <string name="extraEgg">Extra Egg</string>
+    <string name="extraMeat">Extra Meat</string>
+    <string name="specialOption">Special Option</string>
+    <string name="itemFlavor">Item Flavor</string>
+
+
 </resources>

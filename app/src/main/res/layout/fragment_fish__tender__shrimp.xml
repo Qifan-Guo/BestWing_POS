@@ -10,79 +10,17 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/drinkBox"
+
+        <include
+            android:id="@+id/drinkSection"
+            app:viewModel= "@{viewModel}"
+            layout="@layout/drink_section"
             android:layout_width="541dp"
             android:layout_height="335dp"
-            android:layout_marginBottom="32dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="108dp"
+            android:layout_marginEnd="156dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/Drink"
-                android:textSize="36sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageButton
-                android:id="@+id/can_soda"
-                android:layout_width="64dp"
-                android:layout_height="120dp"
-                android:layout_marginBottom="64dp"
-                android:layout_marginStart="24dp"
-                android:background="@drawable/on_pressed"
-                android:onClick="@{() -> viewModel.setDrink(`canSoda`)}"
-                android:scaleType="fitCenter"
-                android:src="@drawable/c_soda"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <ImageButton
-                android:id="@+id/bottle_soda"
-                android:layout_width="wrap_content"
-                android:layout_height="208dp"
-                android:layout_marginBottom="64dp"
-                android:layout_marginStart="24dp"
-                android:background="@drawable/on_pressed"
-                android:onClick="@{() -> viewModel.setDrink(`bottleSoda`)}"
-                android:scaleType="fitCenter"
-                android:src="@drawable/b_soda"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/can_soda" />
-
-            <ImageButton
-                android:id="@+id/l_lemonade"
-                android:layout_width="111dp"
-                android:layout_height="173dp"
-                android:layout_marginBottom="64dp"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/on_pressed"
-                android:onClick="@{() -> viewModel.setDrink(`largeLemonade`)}"
-                android:scaleType="fitCenter"
-                android:src="@drawable/l_lemonade"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/m_lemonade" />
-
-            <ImageButton
-                android:id="@+id/m_lemonade"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="64dp"
-                android:layout_marginStart="40dp"
-                android:background="@drawable/on_pressed"
-                android:onClick="@{() -> viewModel.setDrink(`medLemonade`)}"
-                android:scaleType="fitCenter"
-                android:src="@drawable/m_lemonade"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/bottle_soda" />
-
-        </android.support.constraint.ConstraintLayout>
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="1131dp"

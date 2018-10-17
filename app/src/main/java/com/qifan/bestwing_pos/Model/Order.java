@@ -8,11 +8,11 @@ import java.util.HashMap;
 
 public class Order implements Parcelable {
     private String mainItem;
-    private String itemDetail;
     private double itemPrice;
 
     public static final double SPLIT_CHARGE =0.5;
     public int SPLIT_COUNT = 0;
+
 
     public String getDrinkToString() {
         return drinkToString;
@@ -32,11 +32,15 @@ public class Order implements Parcelable {
     private String sideItemToString = "";
     private String flavorToString = "";
     private String additionalItemToString = "";
+    private String specialOptionToString = "";
 
     HashMap<String,Double> mItemPriceMap = ItemPrices.itemPriceMap;
     private ArrayList<String> sideItems = new ArrayList<>();
     private ArrayList<String> drinks = new ArrayList<>();
     private ArrayList<String> additionalItems = new ArrayList<>();
+    private ArrayList<String> specialOptions = new ArrayList<>();
+
+
 
     private double subtotal = 0;
     private Boolean isSelect = false;
@@ -50,11 +54,7 @@ public class Order implements Parcelable {
         this.itemPrice = itemPrice;
     }
 
-    public Order(String mainItem, String itemDetail, double itemPrice) {
-        this.mainItem = mainItem;
-        this.itemDetail = itemDetail;
-        this.itemPrice = itemPrice;
-    }
+
 
 //Constructors ^ -------------------------------------------------------------------------------------^
 
@@ -70,6 +70,9 @@ public class Order implements Parcelable {
         }
         for(String additionalItem : additionalItems){
             subtotal += mItemPriceMap.get(additionalItem) == null ? 0 : mItemPriceMap.get(additionalItem);
+        }
+        for (String specialOption : specialOptions){
+            subtotal += mItemPriceMap.get(specialOption) == null ? 0 : mItemPriceMap.get(specialOption);
         }
         if(mainItem != null){
             subtotal += mItemPriceMap.get(mainItem);
@@ -91,7 +94,25 @@ public class Order implements Parcelable {
 
     public void setDrinkItemToString() {
         String lastDrink = drinks.get(drinks.size() - 1);
-        drinkToString += lastDrink + "------$" + mItemPriceMap.get(lastDrink) + "\n";
+        if(mItemPriceMap.get(lastDrink) != null){
+            drinkToString += lastDrink + "------$" + mItemPriceMap.get(lastDrink) + "\n";
+        }else {
+            drinkToString += lastDrink+"\n";
+        }
+
+    }
+
+    public void setSpecialOptionToString(){
+        String lastOption = specialOptions.get(specialOptions.size() - 1);
+        if(mItemPriceMap.get(lastOption) != null){
+            specialOptionToString += lastOption + "------$" + mItemPriceMap.get(lastOption) + "\n";
+        }else {
+            if(lastOption.equals("no") || lastOption.equals("extra")){
+                specialOptionToString += lastOption+" ";
+            }else{
+                specialOptionToString += lastOption +",\n";
+            }
+        }
     }
 
     public void setAdditionalItemToString(){
@@ -112,6 +133,9 @@ public class Order implements Parcelable {
         }
         if(option.equals("additionalItem")){
             additionalItemToString = "";
+        }
+        if(option.equals("specialOption")){
+            specialOptionToString = "";
         }
     }
 
@@ -139,6 +163,7 @@ public class Order implements Parcelable {
 
     }
 
+
     public double getSubtotal() {
         return subtotal;
     }
@@ -150,6 +175,15 @@ public class Order implements Parcelable {
     public void setSideItems(String sideItem) {
         sideItems.add(sideItem);
         setSideItemToString();
+    }
+    public ArrayList<String> getSpecialOption() {
+        return specialOptions;
+    }
+
+    public void setSpecialOption(String specialOption) {
+        this.specialOptions.add(specialOption);
+        setSpecialOptionToString();
+
     }
 
     public ArrayList<String> getSideItems() {
@@ -183,12 +217,9 @@ public class Order implements Parcelable {
 
     }
 
-    public String getItemDetail() {
-        return itemDetail;
-    }
 
-    public void setItemDetail(String itemDetail) {
-        this.itemDetail = itemDetail;
+    public String getSpecialOptionToString() {
+        return specialOptionToString;
     }
 
     public double getItemPrice() {
@@ -210,12 +241,12 @@ public class Order implements Parcelable {
     }
 
 
+
 //Getters and Setters  ^---------------------------------------------------------------------------------^
 
 
     protected Order(Parcel in) {
         mainItem = in.readString();
-        itemDetail = in.readString();
         itemPrice = in.readDouble();
         SPLIT_COUNT = in.readInt();
         drinkToString = in.readString();
@@ -223,9 +254,11 @@ public class Order implements Parcelable {
         sideItemToString = in.readString();
         flavorToString = in.readString();
         additionalItemToString = in.readString();
+        specialOptionToString = in.readString();
         sideItems = in.createStringArrayList();
         drinks = in.createStringArrayList();
         additionalItems = in.createStringArrayList();
+        specialOptions = in.createStringArrayList();
         subtotal = in.readDouble();
         byte tmpIsSelect = in.readByte();
         isSelect = tmpIsSelect == 0 ? null : tmpIsSelect == 1;
@@ -250,7 +283,6 @@ public class Order implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(mainItem);
-        parcel.writeString(itemDetail);
         parcel.writeDouble(itemPrice);
         parcel.writeInt(SPLIT_COUNT);
         parcel.writeString(drinkToString);
@@ -258,9 +290,11 @@ public class Order implements Parcelable {
         parcel.writeString(sideItemToString);
         parcel.writeString(flavorToString);
         parcel.writeString(additionalItemToString);
+        parcel.writeString(specialOptionToString);
         parcel.writeStringList(sideItems);
         parcel.writeStringList(drinks);
         parcel.writeStringList(additionalItems);
+        parcel.writeStringList(specialOptions);
         parcel.writeDouble(subtotal);
         parcel.writeByte((byte) (isSelect == null ? 0 : isSelect ? 1 : 2));
     }

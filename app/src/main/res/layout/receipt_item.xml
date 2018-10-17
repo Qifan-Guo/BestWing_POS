@@ -77,12 +77,49 @@
             android:visibility="@{order.flavorToString.equals(``) ? View.GONE : View.VISIBLE}"
             android:layout_margin="0dp"
             android:padding="0dp"
-            android:id="@+id/itemDetailBox"
+            android:id="@+id/itemFlavorBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/itemNameBox">
+
+            <TextView
+                android:id="@+id/itemFlavor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="32dp"
+                android:layout_toStartOf="@id/clearFlavor"
+                android:hint="@string/itemFlavor"
+                android:text="@{order.flavorToString}"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="24sp"
+                android:textStyle="italic"
+                tools:layout_marginBottom="0dp"
+                tools:text="Item Detail" />
+
+            <Button
+                android:id="@+id/clearFlavor"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="36dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/delete_option"
+                android:onClick="@{() -> viewModel.clearText(`flavor`)}" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/itemDetailBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:orientation="horizontal"
+            android:padding="0dp"
+            android:visibility="@{order.specialOptionToString.equals(``) ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/itemFlavorBox">
 
             <TextView
                 android:id="@+id/itemDetail"
@@ -92,7 +129,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_toStartOf="@id/clearDetail"
                 android:hint="@string/itemDetail"
-                android:text="@{order.flavorToString}"
+                android:text="@{order.specialOptionToString}"
                 android:textAppearance="@style/TextAppearance.AppCompat"
                 android:textSize="24sp"
                 android:textStyle="italic"
@@ -107,7 +144,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/delete_option"
-                android:onClick="@{() -> viewModel.clearText(`flavor`)}" />
+                android:onClick="@{() -> viewModel.clearText(`specialOption`)}" />
         </RelativeLayout>
 
 
