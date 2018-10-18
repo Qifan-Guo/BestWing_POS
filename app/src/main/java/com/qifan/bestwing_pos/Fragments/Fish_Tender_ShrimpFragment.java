@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.qifan.bestwing_pos.R;
 import com.qifan.bestwing_pos.ViewModel.SharedViewModel;
 import com.qifan.bestwing_pos.databinding.FragmentFishTenderShrimpBinding;
+import com.qifan.bestwing_pos.iMainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,13 +25,14 @@ private FragmentFishTenderShrimpBinding mBinding;
         // Required empty public constructor
     }
 
-//TODO TENDER ADDONE FEATURE NOT WORKING
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mBinding = FragmentFishTenderShrimpBinding.inflate(inflater);
         mSharedViewModel = ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
         mBinding.setViewModel(mSharedViewModel);
+        mBinding.setIMainActivity((iMainActivity)getActivity());
+
 
         return mBinding.getRoot();
     }

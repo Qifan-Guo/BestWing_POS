@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.qifan.bestwing_pos.R;
 import com.qifan.bestwing_pos.ViewModel.SharedViewModel;
 import com.qifan.bestwing_pos.databinding.FragmentSideItemsBinding;
+import com.qifan.bestwing_pos.iMainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,6 +33,8 @@ public class Side_ItemsFragment extends Fragment {
         mBinding = FragmentSideItemsBinding.inflate(inflater);
         mSharedViewModel = ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
         mBinding.setViewModel(mSharedViewModel);
+        mBinding.setIMainActivity((iMainActivity)getActivity());
+
 
         return mBinding.getRoot();
     }

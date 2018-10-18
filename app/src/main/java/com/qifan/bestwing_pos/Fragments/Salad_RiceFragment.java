@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.qifan.bestwing_pos.R;
 import com.qifan.bestwing_pos.ViewModel.SharedViewModel;
 import com.qifan.bestwing_pos.databinding.FragmentSaladRiceBinding;
+import com.qifan.bestwing_pos.iMainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,6 +32,8 @@ public class Salad_RiceFragment extends Fragment {
         mBinding = FragmentSaladRiceBinding.inflate(inflater);
         mSharedViewModel = ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
         mBinding.setViewModel(mSharedViewModel);
+        mBinding.setIMainActivity((iMainActivity)getActivity());
+
         return mBinding.getRoot();
     }
 

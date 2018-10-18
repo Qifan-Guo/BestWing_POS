@@ -13,8 +13,9 @@
     </data>
 
     <android.support.constraint.ConstraintLayout
-        android:layout_width="500dp"
-        android:layout_height="500dp">
+        android:padding="16dp"
+        android:layout_width="700dp"
+        android:layout_height="700dp">
 
         <Button
             android:id="@+id/button37"
@@ -23,10 +24,11 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:background="@android:color/holo_red_light"
+            android:onClick="@{() -> viewModel.setSpecialOption(`no`)}"
             android:text="@string/no"
             android:textColor="@android:color/white"
+            android:textSize="24sp"
             android:textStyle="bold"
-            android:onClick="@{() -> viewModel.setSpecialOption(`no`)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,8 +38,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="38dp"
-            android:text="@string/lettuce"
             android:onClick="@{() -> viewModel.setSpecialOption(`lettuce`)}"
+            android:text="@string/lettuce"
+            android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button37" />
 
@@ -47,8 +50,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="38dp"
-            android:text="@string/tomato"
             android:onClick="@{() -> viewModel.setSpecialOption(`tomato`)}"
+            android:text="@string/tomato"
+            android:textSize="24sp"
             app:layout_constraintStart_toEndOf="@+id/button39"
             app:layout_constraintTop_toBottomOf="@+id/button37" />
 
@@ -58,8 +62,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="38dp"
-            android:text="@string/jelopeno"
             android:onClick="@{() -> viewModel.setSpecialOption(`jelopeno`)}"
+            android:text="@string/jelopeno"
+            android:textSize="24sp"
             app:layout_constraintStart_toEndOf="@+id/button40"
             app:layout_constraintTop_toBottomOf="@+id/button37" />
 
@@ -69,8 +74,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="@string/pickles"
             android:onClick="@{() -> viewModel.setSpecialOption(`pickles`)}"
+            android:text="@string/pickles"
+            android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button39" />
 
@@ -80,8 +86,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="@string/blackOlive"
             android:onClick="@{() -> viewModel.setSpecialOption(`blackOlive`)}"
+            android:text="@string/blackOlive"
+            android:textSize="24sp"
             app:layout_constraintStart_toEndOf="@+id/button42"
             app:layout_constraintTop_toBottomOf="@+id/button40" />
 
@@ -91,8 +98,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="38dp"
-            android:text="@string/bananaPepper"
             android:onClick="@{() -> viewModel.setSpecialOption(`bananaPepper`)}"
+            android:text="@string/bananaPepper"
+            android:textSize="24sp"
             app:layout_constraintStart_toEndOf="@+id/button41"
             app:layout_constraintTop_toBottomOf="@+id/button37" />
 
@@ -102,8 +110,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="@string/onion"
             android:onClick="@{() -> viewModel.setSpecialOption(`onion`)}"
+            android:text="@string/onion"
+            android:textSize="24sp"
             app:layout_constraintStart_toEndOf="@+id/button43"
             app:layout_constraintTop_toBottomOf="@+id/button41" />
 
@@ -113,8 +122,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="@string/peas"
             android:onClick="@{() -> viewModel.setSpecialOption(`peas`)}"
+            android:text="@string/peas"
+            android:textSize="24sp"
             app:layout_constraintStart_toEndOf="@+id/button45"
             app:layout_constraintTop_toBottomOf="@+id/button44" />
 
@@ -124,8 +134,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="@string/carrots"
             android:onClick="@{() -> viewModel.setSpecialOption(`carrots`)}"
+            android:text="@string/carrots"
+            android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button42" />
 
@@ -135,8 +146,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="@string/mayo"
             android:onClick="@{() -> viewModel.setSpecialOption(`mayo`)}"
+            android:text="@string/mayo"
+            android:textSize="24sp"
             app:layout_constraintStart_toEndOf="@+id/button47"
             app:layout_constraintTop_toBottomOf="@+id/button43" />
 
@@ -146,8 +158,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="@string/ketchup"
             android:onClick="@{() -> viewModel.setSpecialOption(`ketchup`)}"
+            android:text="@string/ketchup"
+            android:textSize="24sp"
             app:layout_constraintStart_toEndOf="@+id/button48"
             app:layout_constraintTop_toBottomOf="@+id/button43" />
 
@@ -157,8 +170,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="@string/mustard"
             android:onClick="@{() -> viewModel.setSpecialOption(`mustard`)}"
+            android:text="@string/mustard"
+            android:textSize="24sp"
             app:layout_constraintStart_toEndOf="@+id/button49"
             app:layout_constraintTop_toBottomOf="@+id/button45" />
 
@@ -168,8 +182,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="@string/noBroccoli"
             android:onClick="@{() -> viewModel.setSpecialOption(`No Broccoli`)}"
+            android:text="@string/noBroccoli"
+            android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button47" />
 
@@ -179,8 +194,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="@string/noEgg"
             android:onClick="@{() -> viewModel.setSpecialOption(`No Egg`)}"
+            android:text="@string/noEgg"
+            android:textSize="24sp"
             app:layout_constraintStart_toEndOf="@+id/button51"
             app:layout_constraintTop_toBottomOf="@+id/button48" />
 
@@ -191,9 +207,10 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:background="@android:color/holo_green_light"
-            android:text="@string/extra"
             android:onClick="@{() -> viewModel.setSpecialOption(`extra`)}"
+            android:text="@string/extra"
             android:textColor="@android:color/white"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/button37"
             app:layout_constraintTop_toTopOf="parent" />
@@ -204,8 +221,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
-            android:text="@string/extraEgg"
             android:onClick="@{() -> viewModel.setSpecialOption(`extraEgg`)}"
+            android:text="@string/extraEgg"
+            android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button51" />
 
@@ -215,18 +233,19 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
-            android:text="@string/extraMeat"
             android:onClick="@{() -> viewModel.setSpecialOption(`extraMeat`)}"
+            android:text="@string/extraMeat"
+            android:textSize="24sp"
             app:layout_constraintStart_toEndOf="@+id/button54"
             app:layout_constraintTop_toBottomOf="@+id/button52" />
 
         <Button
-            android:background="@drawable/ic_x_black"
             android:id="@+id/closeOptionWindow"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="8dp"
             android:layout_marginTop="8dp"
+            android:background="@drawable/ic_x_black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

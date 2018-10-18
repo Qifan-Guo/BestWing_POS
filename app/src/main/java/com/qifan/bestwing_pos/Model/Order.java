@@ -7,25 +7,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Order implements Parcelable {
+    //Must Have
     private String mainItem;
     private double itemPrice;
-
-    public static final double SPLIT_CHARGE =0.5;
-    public int SPLIT_COUNT = 0;
+    private double subtotal = 0;
 
 
-    public String getDrinkToString() {
-        return drinkToString;
-    }
 
-    public String getMainItemToString() {
-        return mainItemToString;
-    }
-
-    public String getSideItemToString() {
-        return sideItemToString;
-    }
-    public String getAdditionalItemToString() {return additionalItemToString;}
 
     private String drinkToString = "";
     private String mainItemToString = "";
@@ -34,7 +22,7 @@ public class Order implements Parcelable {
     private String additionalItemToString = "";
     private String specialOptionToString = "";
 
-    HashMap<String,Double> mItemPriceMap = ItemPrices.itemPriceMap;
+    HashMap<String, Double> mItemPriceMap = ItemPrices.itemPriceMap;
     private ArrayList<String> sideItems = new ArrayList<>();
     private ArrayList<String> drinks = new ArrayList<>();
     private ArrayList<String> additionalItems = new ArrayList<>();
@@ -42,8 +30,12 @@ public class Order implements Parcelable {
 
 
 
-    private double subtotal = 0;
     private Boolean isSelect = false;
+    public static final double SPLIT_CHARGE = 0.5;
+    public int SPLIT_COUNT = 0;
+
+
+
 
     //Constructors --------------------------------------------------------------------------------------
     public Order() {
@@ -53,7 +45,6 @@ public class Order implements Parcelable {
         this.mainItem = mainItem;
         this.itemPrice = itemPrice;
     }
-
 
 
 //Constructors ^ -------------------------------------------------------------------------------------^
@@ -68,17 +59,17 @@ public class Order implements Parcelable {
         for (String sideItem : sideItems) {
             subtotal += mItemPriceMap.get(sideItem) == null ? 0 : mItemPriceMap.get(sideItem);
         }
-        for(String additionalItem : additionalItems){
+        for (String additionalItem : additionalItems) {
             subtotal += mItemPriceMap.get(additionalItem) == null ? 0 : mItemPriceMap.get(additionalItem);
         }
-        for (String specialOption : specialOptions){
+        for (String specialOption : specialOptions) {
             subtotal += mItemPriceMap.get(specialOption) == null ? 0 : mItemPriceMap.get(specialOption);
         }
-        if(mainItem != null){
+        if (mainItem != null) {
             subtotal += mItemPriceMap.get(mainItem);
         }
-        if(SPLIT_COUNT != 0){
-            subtotal += (SPLIT_CHARGE*SPLIT_COUNT);
+        if (SPLIT_COUNT != 0) {
+            subtotal += (SPLIT_CHARGE * SPLIT_COUNT);
         }
         this.subtotal = subtotal;
     }
@@ -86,7 +77,7 @@ public class Order implements Parcelable {
 
     public void setSideItemToString() {
         String lastItem = sideItems.get(sideItems.size() - 1);
-        if(lastItem.equals("FF") || lastItem.equals("FR")){
+        if (lastItem.equals("FF") || lastItem.equals("FR")) {
             sideItemToString = "";
         }
         sideItemToString += lastItem + "------$" + mItemPriceMap.get(lastItem) + "\n";
@@ -94,47 +85,47 @@ public class Order implements Parcelable {
 
     public void setDrinkItemToString() {
         String lastDrink = drinks.get(drinks.size() - 1);
-        if(mItemPriceMap.get(lastDrink) != null){
+        if (mItemPriceMap.get(lastDrink) != null) {
             drinkToString += lastDrink + "------$" + mItemPriceMap.get(lastDrink) + "\n";
-        }else {
-            drinkToString += lastDrink+"\n";
+        } else {
+            drinkToString += lastDrink + "\n";
         }
 
     }
 
-    public void setSpecialOptionToString(){
+    public void setSpecialOptionToString() {
         String lastOption = specialOptions.get(specialOptions.size() - 1);
-        if(mItemPriceMap.get(lastOption) != null){
+        if (mItemPriceMap.get(lastOption) != null) {
             specialOptionToString += lastOption + "------$" + mItemPriceMap.get(lastOption) + "\n";
-        }else {
-            if(lastOption.equals("no") || lastOption.equals("extra")){
-                specialOptionToString += lastOption+" ";
-            }else{
-                specialOptionToString += lastOption +",\n";
+        } else {
+            if (lastOption.equals("no") || lastOption.equals("extra")) {
+                specialOptionToString += lastOption + " ";
+            } else {
+                specialOptionToString += lastOption + ",\n";
             }
         }
     }
 
-    public void setAdditionalItemToString(){
+    public void setAdditionalItemToString() {
         String lastItem = additionalItems.get(additionalItems.size() - 1);
         additionalItemToString += lastItem + "------$" + mItemPriceMap.get(lastItem) + "\n";
     }
 
-    public void clearText(String option){
-        if(option.equals("side")){
+    public void clearText(String option) {
+        if (option.equals("side")) {
             sideItemToString = "";
         }
-        if(option.equals("drink")){
+        if (option.equals("drink")) {
             drinkToString = "";
         }
-        if(option.equals("flavor")){
+        if (option.equals("flavor")) {
             SPLIT_COUNT = 0;
             flavorToString = "";
         }
-        if(option.equals("additionalItem")){
+        if (option.equals("additionalItem")) {
             additionalItemToString = "";
         }
-        if(option.equals("specialOption")){
+        if (option.equals("specialOption")) {
             specialOptionToString = "";
         }
     }
@@ -145,17 +136,32 @@ public class Order implements Parcelable {
 
 //Getters and Setters  ------------------------------------------------------------------------------------
 
+    public String getDrinkToString() {
+        return drinkToString;
+    }
+
+    public String getMainItemToString() {
+        return mainItemToString;
+    }
+
+    public String getSideItemToString() {
+        return sideItemToString;
+    }
+
+    public String getAdditionalItemToString() {
+        return additionalItemToString;
+    }
 
     public String getFlavorToString() {
         return flavorToString;
     }
 
     public void setFlavorToString(String flavor) {
-        if (flavorToString .equals("") || flavorToString.substring(flavorToString.length() - 1).equals("\n")) {
+        if (flavorToString.equals("") || flavorToString.substring(flavorToString.length() - 1).equals("\n")) {
             flavorToString += "•    " + flavor;
         } else if (flavor.equals("||=")) {
             flavorToString += flavor + "-----$" + mItemPriceMap.get(flavor) + "\n";
-            SPLIT_COUNT +=1;
+            SPLIT_COUNT += 1;
         } else {
             flavorToString += "+" + flavor;
         }
@@ -176,6 +182,7 @@ public class Order implements Parcelable {
         sideItems.add(sideItem);
         setSideItemToString();
     }
+
     public ArrayList<String> getSpecialOption() {
         return specialOptions;
     }
@@ -207,6 +214,7 @@ public class Order implements Parcelable {
         additionalItems.add(additionalItem);
         setAdditionalItemToString();
     }
+
     public String getMainItem() {
         return mainItem;
     }
@@ -239,7 +247,6 @@ public class Order implements Parcelable {
     public void setSelect(Boolean select) {
         isSelect = select;
     }
-
 
 
 //Getters and Setters  ^---------------------------------------------------------------------------------^
@@ -275,6 +282,7 @@ public class Order implements Parcelable {
             return new Order[size];
         }
     };
+
     @Override
     public int describeContents() {
         return 0;
